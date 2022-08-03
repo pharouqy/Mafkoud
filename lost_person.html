@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Lost Person</title>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <p>Logo</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Profil</a></li>
+                    <li><a href="#">Missing</a></li>
+                    <li><a href="#">Lougout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="missing_form">
+            <div>
+                <h1>Missing Person</h1>
+            </div>
+            <div class="form">
+                <form action="" method="post">
+                    <div>
+                        <div>
+                            <label for="firstName">First Name :</label>
+                            <input type="text" name="firstName" id="firstName" placeholder="First Name" />
+                        </div>
+                        <div>
+                            <label for="lastName">Last Name :</label>
+                            <input type="text" name="lastName" id="lastName" placeholder="Last Name" />
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <label for="birthDate">Birth Date :</label>
+                            <input type="date" name="birthDate" id="birthDate" placeholder="Birth Date" />
+                            <label for="birthPlace">Birth Place :</label>
+                            <input type="text" name="birthPlace" id="birthPlace" placeholder="Birth Place" />
+                        </div>
+                        <div>
+                            <label for="ageOfMissing">Age Of Missing :</label>
+                            <input type="number" name="ageOfMissing" id="ageOfMissing" placeholder="Age Of Missing" />
+                            <label for="sexe">Sexe :</label>
+                            <select name="sexe" id="sexe">
+                                <option value="">sexe</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="currentAdress">Current Adress :</label>
+                        <input type="text" name="currentAdress" id="currentAdress" placeholder="Current Adress" />
+                    </div>
+                    <div>
+                        <label for="previousAdress">Previous Adress :</label>
+                        <input type="text" name="previousAdress" id="previousAdress" placeholder="Previous Adress" />
+                    </div>
+                    <div>
+                        <div>
+                            <label for="city">City :</label>
+                            <input type="text" name="city" id="city" placeholder="City" />
+                        </div>
+                        <div>
+                            <label for="wilaya">Wilaya :</label>
+                            <select name="wilaya" id="wilaya">
+                                <option value="">wilaya</option>
+                                <option value="Alger">Alger</option>
+                                <option value="Annaba">Annaba</option>
+                                <option value="Oran">Oran</option>
+                                <option value="Constantine">Constantine</option>
+                                <option value="Tipaza">Tipaza</option>
+                                <option value="Boumerdes">Boumerdes</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <label for="cityOfMissing">City Of Missing :</label>
+                            <input type="text" name="cityOfMissing" id="cityOfMissing" placeholder="City Of Missing" />
+                        </div>
+                        <div>
+                            <label for="wilayaOfMissing">Wilaya Of Missing :</label>
+                            <select name="wilayaOfMissing" id="wilayaOfMissing">
+                                <option value="">wilaya</option>
+                                <option value="Alger">Alger</option>
+                                <option value="Annaba">Annaba</option>
+                                <option value="Oran">Oran</option>
+                                <option value="Constantine">Constantine</option>
+                                <option value="Tipaza">Tipaza</option>
+                                <option value="Boumerdes">Boumerdes</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <label for="dateOfMissing">Date Of Missing :</label>
+                            <input type="date" name="dateOfMissing" id="dateOfMissing" placeholder="Date Of Missing" />
+                        </div>
+                        <div>
+                            <label for="phone">Phone :</label>
+                            <input type="tel" name="phone" id="phone" placeholder="Phone" />
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <label for="height">Height :</label><input type="number" name="height" id="height"
+                                placeholder="Height (Cm)" />
+                            <label for="weight">Weight :</label><input type="number" name="weight" id="weight"
+                                placeholder="Weight (Kg)" />
+                        </div>
+                        <div>
+                            <label for="hair">Hair :</label><input type="text" name="hair" id="hair"
+                                placeholder="Hair Color" />
+                            <label for="eyes">Eyes :</label><input type="text" name="eyes" id="eyes"
+                                placeholder="Eyes Color" />
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <label for="photo">Photo :<input type="file" name="photo" id="photo" />
+                                <span class="file">Upload ...</span></label>
+                            <label for="blood">Blood :</label><select name="blood" id="blood">
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="O">O</option>
+                                <option value="AB">AB</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="bloodPressure" class="label">Blood Pressure :<input type="checkbox"
+                                    name="bloodPressure" id="bloodPressure" />
+                                <span class="checkmark"></span></label>
+                            <label for="diabet" class="label">diabet<input type="checkbox" name="diabet" id="diabet" />
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <label for="mentalIlness" class="label">Mental Ilness :<input type="checkbox"
+                                    name="mentalIlness" id="mentalIlness" />
+                                <span class="checkmark"></span></label>
+                            <label for="tatoos" class="label">Tatoos :<input type="checkbox" name="tatoos"
+                                    id="tatoos" />
+                                <span class="checkmark"></span></label>
+                        </div>
+                        <div>
+                            <label for="birthMarks" class="label">Birthmarks<input type="checkbox" name="birthMarks"
+                                    id="birthMarks" />
+                                <span class="checkmark"></span></label>
+                            <label for="scars" class="label">scars<input type="checkbox" name="scars" id="scars" />
+                                <span class="checkmark"></span></label>
+                        </div>
+                    </div>
+                    <div>
+                        <textarea name="descibe" id="descibe" cols="100" rows="25"
+                            placeholder="Describe the circumstances of the disappearance ..."></textarea>
+                    </div>
+                    <div>
+                        <button type="submit">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div>
+            <a href="#"><img src="./assets/images/facebook.png" alt="facebook" /></a>
+            <a href="#"><img src="./assets/images/twitter.png" alt="twitter" /></a>
+            <a href="#"><img src="./assets/images/linkedin.png" alt="linkedin" /></a>
+            <a href="#"><img src="./assets/images/github.png" alt="github" /></a>
+        </div>
+        <div>
+            <p>© All Right Reserved 2022</p>
+        </div>
+    </footer>
+    <script src="./js/script.js"></script>
+</body>
+
+</html>
