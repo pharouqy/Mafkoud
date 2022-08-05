@@ -168,59 +168,6 @@ main div.main h2 {
   color: #550f4c;
   margin: 50px 0;
 }
-main div.main div#card {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-main div.main div#card a {
-  text-decoration: none;
-}
-main div.main div#card a article.card {
-  border: 2px solid #550f4c;
-  background-color: #fff;
-  margin: 15px 15px;
-  border-radius: 30px;
-  width: 300px;
-  height: 100%;
-  box-shadow: 0px 0px 20px 5px #550f4c;
-}
-main div.main div#card a article.card:hover {
-  transform: scale(1.2);
-  transition: all 0.8s ease-in-out;
-}
-main div.main div#card a article.card div.card_img {
-  height: 200px;
-  width: 100%;
-}
-main div.main div#card a article.card div.card_img img {
-  height: 100%;
-  width: 100%;
-  border-radius: 30px;
-  object-fit: cover;
-}
-main div.main div#card a article.card div.card_text {
-  height: 100%;
-  width: 100%;
-  text-align: center;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #550f4c;
-}
-main div.main div#card a article.card div.card_text p {
-  margin: 25px 15px;
-}
-main div.main div#card a article.card div.card_text p span:nth-child(3) > img {
-  height: 20px;
-  width: 20px;
-  -webkit-animation: scale-up-center 0.8s cubic-bezier(0.39, 0.575, 0.565, 1) infinite alternate both;
-  animation: scale-up-center 0.8s cubic-bezier(0.39, 0.575, 0.565, 1) infinite alternate both;
-}
-main div.main div#card a article.card div.card_text p span:nth-child(4) {
-  color: #276dd0;
-}
 main div.missing_form {
   display: flex;
   flex-direction: column;
@@ -643,6 +590,115 @@ div#label article > div:nth-child(2) form > button {
 div#label article:hover {
   transform: translate(0, -5px);
   transition: all 0.5s ease-in-out;
+}
+
+div#card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+div#card a {
+  text-decoration: none;
+}
+div#card a article.card {
+  border: 2px solid #550f4c;
+  background-color: #fff;
+  margin: 15px 15px;
+  border-radius: 30px;
+  width: 300px;
+  height: 100%;
+  box-shadow: 0px 0px 20px 5px #550f4c;
+}
+div#card a article.card:hover {
+  transform: scale(1.2);
+  transition: all 0.8s ease-in-out;
+}
+div#card a article.card div.card_img {
+  height: 200px;
+  width: 100%;
+}
+div#card a article.card div.card_img img {
+  height: 100%;
+  width: 100%;
+  border-radius: 30px;
+  object-fit: cover;
+}
+div#card a article.card div.card_text {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #550f4c;
+}
+div#card a article.card div.card_text p {
+  margin: 25px 15px;
+}
+div#card a article.card div.card_text p span:nth-child(4) {
+  color: #276dd0;
+}
+
+img#heart {
+  height: 20px;
+  width: 20px;
+  -webkit-animation: scale-up-center 0.8s cubic-bezier(0.39, 0.575, 0.565, 1) infinite alternate both;
+  animation: scale-up-center 0.8s cubic-bezier(0.39, 0.575, 0.565, 1) infinite alternate both;
+}
+
+section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+section a {
+  text-decoration: none;
+}
+section a article.card {
+  border: 2px solid #550f4c;
+  background-color: #fff;
+  margin: 15px 15px;
+  border-radius: 30px;
+  width: 300px;
+  height: 100%;
+  box-shadow: 0px 0px 20px 5px #550f4c;
+}
+section a article.card:hover {
+  transform: scale(1.2);
+  transition: all 0.8s ease-in-out;
+}
+section a article.card div.card_img {
+  height: 200px;
+  width: 100%;
+}
+section a article.card div.card_img img {
+  height: 100%;
+  width: 100%;
+  border-radius: 30px;
+  object-fit: cover;
+}
+section a article.card div.card_text {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #550f4c;
+}
+section a article.card div.card_text p {
+  margin: 25px 15px;
+}
+section a article.card div.card_text p span:nth-child(3) > img {
+  height: 20px;
+  width: 20px;
+  -webkit-animation: scale-up-center 0.8s cubic-bezier(0.39, 0.575, 0.565, 1) infinite alternate both;
+  animation: scale-up-center 0.8s cubic-bezier(0.39, 0.575, 0.565, 1) infinite alternate both;
+}
+section a article.card div.card_text p span:nth-child(4) {
+  color: #276dd0;
 }
 
 /*# sourceMappingURL=style.css.map */

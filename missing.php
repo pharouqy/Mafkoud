@@ -1,3 +1,88 @@
+<?php
+    session_start();
+    ini_set('display_errors', 'on');
+    include 'connectdb.php';
+    if (isset($_POST["create"])) {
+        $idUser = $_SESSION["iduser"];
+        $firstName = $_POST["firstName"];
+        $lastName = $_POST["lastName"];
+        $birthDate = $_POST["birthDate"];
+        $birthPlace = $_POST["birthPlace"];
+        $ageOfMissing = $_POST["ageOfMissing"];
+        $sexe = $_POST["sexe"];
+        $currentAdress = $_POST["currentAdress"];
+        $previousAdress = $_POST["previousAdress"];
+        $city = $_POST["city"];
+        $wilaya = $_POST["wilaya"];
+        $cityOfMissing = $_POST["cityOfMissing"];
+        $wilayaOfMissing = $_POST["wilayaOfMissing"];
+        $dateOfMissing = $_POST["dateOfMissing"];
+        $phone = $_POST["phone"];
+        $height = $_POST["height"];
+        $weight = $_POST["weight"];
+        $hair = $_POST["hair"];
+        $eyes = $_POST["eyes"];
+        $blood = $_POST["blood"];
+        $bloodPressure = isset($_POST["bloodPressure"]) ? 1 : 0;
+        $diabet = isset($_POST["diabet"]) ? 1 : 0;
+        $mentalIlness = isset($_POST["mentalIlness"]) ? 1 : 0;
+        $tatoos = isset($_POST["tatoos"]) ? 1 : 0;
+        $birthMarks = isset($_POST["birthMarks"]) ? 1 : 0;
+        $scars = isset($_POST["scars"]) ? 1 : 0;
+        $describing = $_POST["describing"];
+
+        $pictureName = $_FILES["photo"]["name"];
+        $pictureTmpName = $_FILES["photo"]["tmp_name"];
+        $pictureSize = $_FILES["photo"]["size"];
+        $pictureError = $_FILES["photo"]["error"];
+        $pictureType = $_FILES["photo"]["type"];
+        $pictureExt = explode(".", $pictureName);
+        $pictureActualExt = strtolower(end($pictureExt));
+        $allowed = array("jpg", "jpeg", "png");
+
+        $photo = "./images/" . rand() . $pictureName;
+        move_uploaded_file($pictureTmpName, $photo);
+
+    try {
+        $sql = "INSERT INTO missing(user_iduser,firstName,lastName,birthDate,BirthPlace,ageOfMissing,Sexe,currentAdress,previousAdress,city,wilaya,cityOfMissing,wilayaOfMissing,dateOfMissing,phone,height,weight,hair,eyes,photo,blood,bloodPressure,diabet,mentalIlness,tatoos,birthmarks,scars,describing) VALUES(:user_iduser,:firstName,:lastName,:birthDate,:birthPlace,:ageOfMissing,:Sexe,:currentAdress,:previousAdress,:city,:wilaya,:cityOfMissing,:wilayaOfMissing,:dateOfMissing,:phone,:height,:weight,:hair,:eyes,:photo,:blood,:bloodPressure,:diabet,:mentalIlness,:tatoos,:birthMarks,:scars,:describing)";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(":user_iduser", $idUser);
+        $stmt->bindParam(":firstName", $firstName);
+        $stmt->bindParam(":lastName", $lastName);
+        $stmt->bindParam(":birthDate", $birthDate);
+        $stmt->bindParam(":birthPlace", $birthPlace);
+        $stmt->bindParam(":ageOfMissing", $ageOfMissing);
+        $stmt->bindParam(":Sexe", $sexe);
+        $stmt->bindParam(":currentAdress", $currentAdress);
+        $stmt->bindParam(":previousAdress", $previousAdress);
+        $stmt->bindParam(":city", $city);
+        $stmt->bindParam(":wilaya", $wilaya,);
+        $stmt->bindParam(":cityOfMissing", $cityOfMissing);
+        $stmt->bindParam(":wilayaOfMissing", $wilayaOfMissing);
+        $stmt->bindParam(":dateOfMissing", $dateOfMissing);
+        $stmt->bindParam(":phone", $phone);
+        $stmt->bindParam(":height", $height);
+        $stmt->bindParam(":weight", $weight);
+        $stmt->bindParam(":hair", $hair);
+        $stmt->bindParam(":eyes", $eyes);
+        $stmt->bindParam(":blood", $blood);
+        $stmt->bindParam(":bloodPressure", $bloodPressure);
+        $stmt->bindParam(":diabet", $diabet);
+        $stmt->bindParam(":mentalIlness", $mentalIlness);
+        $stmt->bindParam(":tatoos", $tatoos);
+        $stmt->bindParam(":birthMarks", $birthMarksR);
+        $stmt->bindParam(":scars", $scars);
+        $stmt->bindParam(":photo", $photo);
+        $stmt->bindParam(":describing", $describing);
+        $stmt->execute();
+        header("Location: ./index.php");
+        }
+    catch (Exception $e) {
+        echo "Error: " . $e->getMessage();
+    }
+    }
+
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,7 +115,7 @@
                 <h1>Missing Person</h1>
             </div>
             <div class="form">
-                <form action="" method="post">
+                <form action="<?php echo $_SERVER['PHP_SELF'] ?>" enctype="multipart/form-data" method="POST">
                     <div>
                         <div>
                             <label for="firstName">First Name :</label>
@@ -140,9 +225,10 @@
                         </div>
                         <div>
                             <label for="bloodPressure" class="label">Blood Pressure :<input type="checkbox"
-                                    name="bloodPressure" id="bloodPressure" />
+                                    name="bloodPressure" id="bloodPressure" value="bloodPressure" />
                                 <span class="checkmark"></span></label>
-                            <label for="diabet" class="label">diabet<input type="checkbox" name="diabet" id="diabet" />
+                            <label for="diabet" class="label">diabet<input type="checkbox" name="diabet" id="diabet"
+                                    value="diabet" />
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -150,26 +236,27 @@
                     <div>
                         <div>
                             <label for="mentalIlness" class="label">Mental Ilness :<input type="checkbox"
-                                    name="mentalIlness" id="mentalIlness" />
+                                    name="mentalIlness" id="mentalIlness" value="mentalIlness" />
                                 <span class="checkmark"></span></label>
-                            <label for="tatoos" class="label">Tatoos :<input type="checkbox" name="tatoos"
-                                    id="tatoos" />
+                            <label for="tatoos" class="label">Tatoos :<input type="checkbox" name="tatoos" id="tatoos"
+                                    value="tatoos" />
                                 <span class="checkmark"></span></label>
                         </div>
                         <div>
                             <label for="birthMarks" class="label">Birthmarks<input type="checkbox" name="birthMarks"
-                                    id="birthMarks" />
+                                    id="birthMarks" value="birthMarks" />
                                 <span class="checkmark"></span></label>
-                            <label for="scars" class="label">scars<input type="checkbox" name="scars" id="scars" />
+                            <label for="scars" class="label">scars<input type="checkbox" name="scars" id="scars"
+                                    value="scars" />
                                 <span class="checkmark"></span></label>
                         </div>
                     </div>
                     <div>
-                        <textarea name="descibe" id="descibe" cols="100" rows="25"
+                        <textarea name="describing" id="describing"
                             placeholder="Describe the circumstances of the disappearance ..."></textarea>
                     </div>
                     <div>
-                        <button type="submit">Create</button>
+                        <button type="submit" name="create">Create</button>
                     </div>
                 </form>
             </div>
