@@ -59,7 +59,10 @@ header div.container div.logo {
   align-items: center;
   justify-content: center;
 }
-header div.container div.logo p {
+header div.container div.logo a {
+  text-decoration: none;
+}
+header div.container div.logo a p {
   font-size: 3.5rem;
   font-weight: bold;
   color: #550f4c;

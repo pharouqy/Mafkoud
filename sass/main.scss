@@ -79,11 +79,14 @@ header {
                 &.logo {
                     @include layout-align(row);
 
-                    p {
-                        font-size: 3.5rem;
-                        font-weight: bold;
-                        color: $primary-color;
-                        margin-right: 10px;
+                    a {
+                        text-decoration: none;
+                        p {
+                            font-size: 3.5rem;
+                            font-weight: bold;
+                            color: $primary-color;
+                            margin-right: 10px;
+                        }
                     }
                 }
             }

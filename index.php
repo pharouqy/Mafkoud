@@ -18,7 +18,9 @@
     <header>
         <div class="container">
             <div class="logo">
-                <p>Logo</p>
+                <a href="index.php">
+                    <p>Logo</p>
+                </a>
             </div>
             <?php if (isset($_SESSION['iduser'])) {
                 echo '<nav>

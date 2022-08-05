@@ -13,7 +13,9 @@
     <header>
         <div class="container">
             <div class="logo">
-                <p>Logo</p>
+                <a href="index.php">
+                    <p>Logo</p>
+                </a>
             </div>
             <nav>
                 <ul class="profil">

@@ -12,8 +12,10 @@
 <body>
     <header>
         <div class="container">
-            <div class="logo">
-                <p>Logo</p>
+        <div class="logo">
+                <a href="index.php">
+                    <p>Logo</p>
+                </a>
             </div>
             <nav>
                 <ul class="profil">
