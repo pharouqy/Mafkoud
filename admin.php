@@ -29,11 +29,20 @@
                 <div>
                     <img src="./assets/images/card.png" alt="profil">
                 </div>
+                <?php 
+                    session_start();
+                    ini_set('display_errors', 'on');
+                    include 'connectdb.php';
+                    $id = $_GET['id'];
+                    $sql = "SELECT * FROM user WHERE iduser = $id";
+                    $result = $db->query($sql);
+                    $row = $result->fetch();
+                ?>
                 <div>
-                    <p>Pseudo: <span id="pseudo"></span></p>
-                    <p>Full Name: <span id="name"></span></p>
-                    <p>Phone Number: <span id="phone"></span></p>
-                    <p>Email: <span id="mail"></span></p>
+                    <p>Pseudo: <span id="pseudo"><?php echo $row['pseudo'] ?></span></p>
+                    <p>Full Name: <span id="name"><?php echo $row['fullName'] ?></span></p>
+                    <p>Phone Number: <span id="phone"><?php echo $row['phone'] ?></span></p>
+                    <p>Email: <span id="mail"><?php echo $row['email'] ?></span></p>
                 </div>
             </div>
             <div>

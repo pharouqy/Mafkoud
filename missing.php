@@ -102,7 +102,7 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="#">Profil</a></li>
+                    <li><a href="<?php echo $_SESSION['isAdmin'] ? 'admin.php?id=' . $_SESSION['iduser'] :  'profil.php?id=' . $_SESSION['iduser']?>">Profil</a></li>
                     <li><a href="missing.php">Missing</a></li>
                     <li><a href="logout.php">Logout</a></li>
                 </ul>

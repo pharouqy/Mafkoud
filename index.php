@@ -20,12 +20,21 @@
             <div class="logo">
                 <p>Logo</p>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="#">Login</a></li>
-                    <li><a href="#">Register</a></li>
-                </ul>
-            </nav>
+            <?php if (isset($_SESSION['iduser'])) {
+                echo '<nav>
+                    <ul class="profil">
+                        <li><a href="logout.php">Logout</a></li>
+                        <li><a href="missing.php">Missing</a></li>
+                    </ul>
+                </nav>';
+            } else {
+                echo '<nav>
+                    <ul class="profil">
+                        <li><a href="login.php">Login</a></li>
+                        <li><a href="register.php">Register</a></li>
+                    </ul>
+                </nav>';
+            } ?>
         </div>
     </header>
     <main>
@@ -56,14 +65,14 @@
             </div>
         </div>
         <section id="search">
-        <?php 
+            <?php 
             $firstName = isset($_POST['firstName']) ? $_POST['firstName'] : '';
             $lastName = isset($_POST['lastName']) ? $_POST['lastName'] : '';
             $city = isset($_POST['city']) ? $_POST['city'] : '';
             $wilaya = isset($_POST['wilaya']) ? $_POST['wilaya'] : '';
 
             if (isset($_POST['find'])) {
-                $sql = "SELECT * FROM missing WHERE firstName LIKE '%$firstName%' AND lastName LIKE '%$lastName%' AND city LIKE '%$city%' AND wilaya LIKE '%$wilaya%'";
+                $sql = "SELECT * FROM missing WHERE isActive = 1 AND firstName LIKE '$firstName' AND lastName LIKE '$lastName' AND city LIKE '$city' AND wilaya LIKE '$wilaya'";
                 $stmt = $db->prepare($sql);
                 $stmt->execute();
                 $result = $stmt->fetchAll();
