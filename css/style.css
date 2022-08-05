@@ -647,17 +647,17 @@ img#heart {
   animation: scale-up-center 0.8s cubic-bezier(0.39, 0.575, 0.565, 1) infinite alternate both;
 }
 
-section {
+section#search {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
 }
-section a {
+section#search a {
   text-decoration: none;
 }
-section a article.card {
+section#search a article.card {
   border: 2px solid #550f4c;
   background-color: #fff;
   margin: 15px 15px;
@@ -666,21 +666,21 @@ section a article.card {
   height: 100%;
   box-shadow: 0px 0px 20px 5px #550f4c;
 }
-section a article.card:hover {
+section#search a article.card:hover {
   transform: scale(1.2);
   transition: all 0.8s ease-in-out;
 }
-section a article.card div.card_img {
+section#search a article.card div.card_img {
   height: 200px;
   width: 100%;
 }
-section a article.card div.card_img img {
+section#search a article.card div.card_img img {
   height: 100%;
   width: 100%;
   border-radius: 30px;
   object-fit: cover;
 }
-section a article.card div.card_text {
+section#search a article.card div.card_text {
   height: 100%;
   width: 100%;
   text-align: center;
@@ -688,16 +688,16 @@ section a article.card div.card_text {
   font-weight: bold;
   color: #550f4c;
 }
-section a article.card div.card_text p {
+section#search a article.card div.card_text p {
   margin: 25px 15px;
 }
-section a article.card div.card_text p span:nth-child(3) > img {
+section#search a article.card div.card_text p span:nth-child(3) > img {
   height: 20px;
   width: 20px;
   -webkit-animation: scale-up-center 0.8s cubic-bezier(0.39, 0.575, 0.565, 1) infinite alternate both;
   animation: scale-up-center 0.8s cubic-bezier(0.39, 0.575, 0.565, 1) infinite alternate both;
 }
-section a article.card div.card_text p span:nth-child(4) {
+section#search a article.card div.card_text p span:nth-child(4) {
   color: #276dd0;
 }
 

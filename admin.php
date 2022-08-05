@@ -17,8 +17,8 @@
             </div>
             <nav>
                 <ul class="profil">
-                    <li><a href="#">Logout</a></li>
-                    <li><a href="#">Missing</a></li>
+                    <li><a href="logout.php">Logout</a></li>
+                    <li><a href="missing.php">Missing</a></li>
                 </ul>
             </nav>
         </div>

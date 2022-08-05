@@ -103,8 +103,8 @@
             <nav>
                 <ul>
                     <li><a href="#">Profil</a></li>
-                    <li><a href="#">Missing</a></li>
-                    <li><a href="#">Logout</a></li>
+                    <li><a href="missing.php">Missing</a></li>
+                    <li><a href="logout.php">Logout</a></li>
                 </ul>
             </nav>
         </div>

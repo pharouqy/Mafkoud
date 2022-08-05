@@ -38,7 +38,7 @@
                 </h1>
             </div>
             <div class="form">
-                <form action="" method="post">
+                <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
                     <input type="text" name="firstName" id="firstName" placeholder="First Name" />
                     <input type="text" name="lastName" id="lastName" placeholder="Last Name" />
                     <input type="text" name="city" id="city" placeholder="City" />
@@ -51,37 +51,56 @@
                         <option value="Tipaza">Tipaza</option>
                         <option value="Boumerdes">Boumerdes</option>
                     </select>
-                    <button type="submit">Find</button>
+                    <button type="submit" name="find">Find</button>
                 </form>
             </div>
         </div>
-        <section>
-            <a href="missing.php/?id=465789135753489473">
-                <article class="card">
-                    <div class="card_img">
-                        <img src="./assets/images/card.png" alt="card_img" />
-                    </div>
-                    <div class="card_text">
-                        <h3>
-                            <span>Name</span>
-                            <span>Last Name</span>
-                        </h3>
-                        <h4>
-                            <span>City</span>
-                            <span>Wilaya</span>
-                        </h4>
-                        <p>
-                            <span>Age: 43 years</span>
-                            <br />
-                            <span>
-                                <img src="./assets/images/heart.png" alt="heart" />
-                            </span>
+        <section id="search">
+        <?php 
+            $firstName = isset($_POST['firstName']) ? $_POST['firstName'] : '';
+            $lastName = isset($_POST['lastName']) ? $_POST['lastName'] : '';
+            $city = isset($_POST['city']) ? $_POST['city'] : '';
+            $wilaya = isset($_POST['wilaya']) ? $_POST['wilaya'] : '';
 
-                            <span>Last Seen: 02/08/2022</span>
-                        </p>
-                    </div>
-                </article>
-            </a>
+            if (isset($_POST['find'])) {
+                $sql = "SELECT * FROM missing WHERE firstName LIKE '%$firstName%' AND lastName LIKE '%$lastName%' AND city LIKE '%$city%' AND wilaya LIKE '%$wilaya%'";
+                $stmt = $db->prepare($sql);
+                $stmt->execute();
+                $result = $stmt->fetchAll();
+                if($result) {
+                    foreach ($result as $row) {
+                        echo '<a href="fiche.php/?id='.$row['idmissing'].'">';
+                        echo '<article class="card">';
+                        echo '<div class="card_img">';
+                        echo '<img src="'.$row['photo'].'" alt="card_img" />';
+                        echo '</div>';
+                        echo '<div class="card_text">';
+                        echo '<h3>';
+                        echo '<span>'.$row['firstName'].' </span>';
+                        echo '<span>'.$row['lastName'].'</span>';
+                        echo '</h3>';
+                        echo '<h4>';
+                        echo '<span>'.$row['city'].' </span>';
+                        echo '<span>'.$row['wilaya'].'</span>';
+                        echo '</h4>';
+                        echo '<p>';
+                        echo '<span>Age: '.$row['ageOfMissing'].' years</span>';
+                        echo '<br />';
+                        echo '<span>';
+                        echo '<img src="./assets/images/heart.png" alt="heart" />';
+                        echo '</span>';
+                        echo '<span>Last Seen:<br> '.$row['dateOfMissing'].'</span>';
+                        echo '</p>';
+                        echo '</div>';
+                        echo '</article>';
+                        echo '</a>';
+                    }
+                } else {
+                    echo '<p>No result found</p>';
+                }
+
+            }
+            ?>
         </section>
         <div class="main">
             <h2>Last Missing !!!</h2>
