@@ -74,7 +74,7 @@
             $wilaya = isset($_POST['wilaya']) ? $_POST['wilaya'] : '';
 
             if (isset($_POST['find'])) {
-                $sql = "SELECT * FROM missing WHERE isActive = 1 AND isFind = 0 AND firstName LIKE '$firstName' AND lastName LIKE '$lastName' AND city LIKE '$city' AND wilaya LIKE '$wilaya'";
+                $sql = "SELECT * FROM missing WHERE isActive = 1 AND isFind = 0 AND firstName LIKE '$firstName' AND lastName LIKE '$lastName' AND (city LIKE '$city' OR wilaya LIKE '$wilaya')";
                 $stmt = $db->prepare($sql);
                 $stmt->execute();
                 $result = $stmt->fetchAll();

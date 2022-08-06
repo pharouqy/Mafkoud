@@ -66,6 +66,7 @@
                 <p>Hair :<span><?php echo $missing['hair']  ?></span></p>
                 <p>Eyes :<span><?php echo $missing['eyes']  ?></span></p>
                 <p>Sexe :<span><?php echo $missing['Sexe']  ?></span></p>
+                <p>Mental Ilness :<span><?php echo $missing['mentalIlness'] ? "Yes" : "No" ?></span></p>
                 <p>Age Of Missing :<span><?php echo $missing['ageOfMissing']  ?></span> Years</p>
             </div>
         </aside>
@@ -79,8 +80,8 @@
                     <p>City Of Missing :<span><?php echo $missing['cityOfMissing']  ?></span></p>
                     <p>Date Of Missing :<span><?php echo $missing['dateOfMissing']  ?></span></p>
                     <p>Blood :<span><?php echo $missing['blood']  ?></span></p>
-                    <p>Diabet :<span><?php echo $missing['diabet'] ? "true" : "false"; ?></span></p>
-                    <p>BirthMarks :<span><?php echo $missing['birthmarks'] ? "true" : "false";  ?></span></p>
+                    <p>Diabet :<span><?php echo $missing['diabet'] ? "Yes" : "No"; ?></span></p>
+                    <p>BirthMarks :<span><?php echo $missing['birthmarks'] ? "Yes" : "No";  ?></span></p>
                 </div>
                 <div>
                     <p>Last Name :<span><?php echo $missing['lastName']  ?></span></p>
@@ -89,9 +90,9 @@
                     <p>Wilaya :<span><?php echo $missing['wilaya']  ?></span></p>
                     <p>wilaya Of Missing :<span><?php echo $missing['wilayaOfMissing']  ?></span></p>
                     <p>Phone :<span>0<?php echo $missing['phone']  ?></span></p>
-                    <p>Blood Pressure :<span><?php echo $missing['bloodPressure'] ? "true" : "false";  ?></span></p>
-                    <p>Tatoos :<span><?php echo $missing['tatoos'] ? "true" : "false";  ?></span></p>
-                    <p>Scars :<span><?php echo $missing['scars'] ? "true" : "false";  ?></span></p>
+                    <p>Blood Pressure :<span><?php echo $missing['bloodPressure'] ? "true" : "No";  ?></span></p>
+                    <p>Tatoos :<span><?php echo $missing['tatoos'] ? "Yes" : "No";  ?></span></p>
+                    <p>Scars :<span><?php echo $missing['scars'] ? "Yes" : "No";  ?></span></p>
                 </div>
             </div>
             <div>

@@ -578,6 +578,11 @@ div#label article > div:nth-child(1) h2 {
   color: #550f4c;
   padding: 0 0 0 50px;
 }
+div#label article > div:nth-child(1) h2 img {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+}
 div#label article > div:nth-child(2) {
   display: flex;
   flex-wrap: nowrap;
@@ -794,6 +799,14 @@ main#profil aside div img {
   height: 325px;
   width: 325px;
   object-fit: cover;
+  filter: grayscale(1);
+}
+main#profil aside div img:hover {
+  transform: scale(1.5);
+  filter: grayscale(0);
+  transition: all 0.8s ease-in-out;
+  border-radius: 30px;
+  cursor: zoom-in;
 }
 main#profil aside div:nth-child(2) {
   background-color: #550f4c;

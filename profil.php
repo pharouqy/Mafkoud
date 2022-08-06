@@ -85,7 +85,7 @@
                         $_idDelete = isset($_POST['idDelete']) ? $_POST['idDelete'] : null;
                         echo '<article>';
                         echo '<div>';
-                        echo '<h2>ID : ' . $row['idmissing'] . ' --- ' . $row['lastName'] . " " . $row['firstName'] . '</h2>';
+                        echo '<h2>ID : ' . $row['idmissing'] . ' -<img src="' . $row['photo'] . '"/>- ' . $row['lastName'] . " " . $row['firstName'] . '</h2>';
                         echo '</div>';
                         echo '<div>';
                         if(isset($_POST['find'])) {
@@ -103,8 +103,12 @@
                         }
                         echo '</button>';
                         echo '</form>';
+                        if (isset($_POST['update'])) {
+                            header("location:updateMissing.php?id=$_idUpdate");
+                        }
                         echo '<form action="" method="POST">';
-                        echo '<button type="submit">';
+                        echo '<button type="submit" name="update">';
+                        echo '<input type="hidden" name="idUpdate" value="' . $row['idmissing'] . '">';
                         echo '<img src="./assets/images/Update.png" alt="Update">';
                         echo '</button>';
                         echo '</form>';
