@@ -12,7 +12,7 @@
 <body>
     <header>
         <div class="container">
-        <div class="logo">
+            <div class="logo">
                 <a href="index.php">
                     <p>Logo</p>
                 </a>
@@ -58,18 +58,21 @@
                     $sql = "SELECT * FROM missing WHERE user_idUser = $id ORDER BY idMissing DESC";
                     $result = $db->query($sql);
                     while ($row = $result->fetch()) {
-                        $_id = $row['idmissing'];
+                        $_idIsFind = isset($_POST['idIsFind']) ? $_POST['idIsFind'] : null;
+                        $_idUpdate = isset($_POST['idUpdate']) ? $_POST['idUpdate'] : null;
+                        $_idDelete = isset($_POST['idDelete']) ? $_POST['idDelete'] : null;
                         echo '<article>';
                         echo '<div>';
                         echo '<h2>ID : ' . $row['idmissing'] . ' --- ' . $row['lastName'] . " " . $row['firstName'] . '</h2>';
                         echo '</div>';
                         echo '<div>';
                         if(isset($_POST['find'])) {
-                            $sql = "UPDATE missing SET isFind = 1 WHERE idmissing = $_id";
+                            $sql = "UPDATE missing SET isFind = 1 WHERE idmissing = $_idIsFind";
                             $db->query($sql);
                             header('Location: profil.php?id=' . $id);
                         }
                         echo '<form action="" method="POST">';
+                        echo '<input type="hidden" name="idIsFind" value="' . $row['idmissing'] . '">';
                         echo '<button type="submit" name="find">';
                         if ($row['isFind'] == 1) {
                             echo '<img src="./assets/images/isFind.png" alt="isFind" title="isFind">';
@@ -84,11 +87,12 @@
                         echo '</button>';
                         echo '</form>';
                         if (isset($_POST['delete'])) {
-                            $sql = "DELETE FROM missing WHERE idmissing = $_id";
+                            $sql = "DELETE FROM missing WHERE idmissing = $_idDelete";
                             $result = $db->query($sql);
                             header('Location: profil.php?id=' . $id);
                         }
                         echo '<form action="" method="POST">';
+                        echo '<input type="hidden" name="idDelete" value="' . $row['idmissing'] . '">';
                         echo '<button type="submit" name="delete">';
                         echo '<img src="./assets/images/Delete.png" alt="Delete">';
                         echo '</button>';

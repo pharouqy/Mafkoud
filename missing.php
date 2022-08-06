@@ -2,6 +2,9 @@
     session_start();
     ini_set('display_errors', 'on');
     include 'connectdb.php';
+    if (!isset( $_SESSION['iduser'] )) {
+        header("location:login.php");
+    }
     if (isset($_POST["create"])) {
         $idUser = $_SESSION["iduser"];
         $firstName = $_POST["firstName"];
@@ -97,7 +100,7 @@
 <body>
     <header>
         <div class="container">
-        <div class="logo">
+            <div class="logo">
                 <a href="index.php">
                     <p>Logo</p>
                 </a>

@@ -74,7 +74,7 @@
             $wilaya = isset($_POST['wilaya']) ? $_POST['wilaya'] : '';
 
             if (isset($_POST['find'])) {
-                $sql = "SELECT * FROM missing WHERE isActive = 1 AND firstName LIKE '$firstName' AND lastName LIKE '$lastName' AND city LIKE '$city' AND wilaya LIKE '$wilaya'";
+                $sql = "SELECT * FROM missing WHERE isActive = 1 AND isFind = 0 AND firstName LIKE '$firstName' AND lastName LIKE '$lastName' AND city LIKE '$city' AND wilaya LIKE '$wilaya'";
                 $stmt = $db->prepare($sql);
                 $stmt->execute();
                 $result = $stmt->fetchAll();
@@ -118,7 +118,7 @@
             <div id="card">
                 <?php
         try {
-          $stmt=$db->prepare("SELECT * FROM missing WHERE isActive = 1 ORDER BY idmissing DESC LIMIT 16");
+          $stmt=$db->prepare("SELECT * FROM missing WHERE isActive = 1 AND isFind = 0 ORDER BY idmissing DESC LIMIT 16");
           $stmt->execute();
           $result=$stmt->fetchAll();
           foreach($result as $row){

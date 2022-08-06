@@ -81,6 +81,7 @@ header {
 
                     a {
                         text-decoration: none;
+
                         p {
                             font-size: 3.5rem;
                             font-weight: bold;
@@ -896,6 +897,70 @@ section#search {
                                 }
                             }
                         }
+                    }
+                }
+            }
+        }
+    }
+}
+
+div#register,
+div#login {
+    >div {
+        @include layout-align(column);
+
+        h1 {
+            color: $primary-color;
+            text-align: center;
+        }
+
+        form {
+            border: 1px solid $primary-color;
+            @include layout-align(column);
+            width: 375px;
+            padding: 50px;
+            border-radius: 30px;
+
+            div:not(:last-child) {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+
+                label {
+                    font-size: 0.8rem;
+                    color: $primary-color;
+                }
+
+                input[type="text"],
+                input[type="password"] {
+                    padding: 15px;
+                    height: 25px;
+                    border-radius: 50px;
+                    border: #550f4c 1px solid;
+                    width: 240px;
+                    margin: 0 0 5px 0;
+                }
+            }
+
+            div:last-child {
+                display: flex;
+                justify-content: flex-end;
+                width: 100%;
+
+                button {
+                    color: $tertiary-color;
+                    text-decoration: none;
+                    background-color: $secondary-color;
+                    padding: 22px 75px;
+                    border-radius: 50px;
+                    border: $tertiary-color 1px solid;
+
+                    &:hover {
+                        background-color: $tertiary-color;
+                        color: $primary-color;
+                        border: $primary-color 1px solid;
                     }
                 }
             }

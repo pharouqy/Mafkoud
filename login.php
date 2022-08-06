@@ -1,16 +1,10 @@
 <?php
 session_start();
 ini_set('display_errors', 'on');
-if(isset($_SESSION['pseudo']) )
-{
-  header("location:home.php");
-  die();
-}
 //connect to database
 include 'connectdb.php';
-if($db)
-{
-  if(isset($_POST['login_btn']))
+if($db){
+  if(isset($_POST['login']))
   {
       $pseudo=$_POST['pseudo'] ;
       $password=$_POST['password'];
@@ -32,74 +26,67 @@ if($db)
       }
   }
 }
-?>
 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Rabbani sarkar</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Login</title>
 </head>
 
 <body>
-
-    <div class="container">
-        <hgroup>
-            <h1 class="site-title" style="text-align: center; color: green;">Login, Registration, Logout</h1><br>
-        </hgroup>
-
-        <br>
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav center">
-                        <li><a href="login.php">LogIN</a></li>
-                        <li><a href="register.php">SignUp</a></li>
-                        <li><a href="logout.php">LogOut</a></li>
-                    </ul>
-
-                </div>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.php">
+                    <p>Logo</p>
+                </a>
             </div>
-        </nav>
-
-        <main class="main-content">
-            <div class="col-md-6 col-md-offset-2">
-                <?php
-    if(isset($_SESSION['message']))
-    {
-         echo "<div id='error_msg'>".$_SESSION['message']."</div>";
-         unset($_SESSION['message']);
-    }
-?>
-                <form method="post" action="login.php">
-                    <table>
-                        <tr>
-                            <td>Pseudo : </td>
-                            <td><input type="text" name="pseudo" class="textInput"></td>
-                        </tr>
-                        <tr>
-                            <td>Password : </td>
-                            <td><input type="password" name="password" class="textInput"></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td><input type="submit" name="login_btn" class="Log In"></td>
-                        </tr>
-
-                    </table>
+            <nav>
+                <ul class="profil">
+                    <li><a href="register.php">Register</a></li>
+                    <li><a href="missing.php">Missing</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div id="login">
+            <div>
+                <h1>Login</h1>
+                <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+                    <div>
+                        <label for="pseudo">Pseudo :</label>
+                        <input type="text" name="pseudo" id="pseudo" />
+                    </div>
+                    <div>
+                        <label for="password">Password :</label>
+                        <input type="password" name="password" id="password" />
+                    </div>
+                    <div>
+                        <button type="submit" name="login">Login</button>
+                    </div>
                 </form>
             </div>
-
-        </main>
-    </div>
-
+        </div>
+    </main>
+    <footer>
+        <div>
+            <a href="#"><img src="./assets/images/facebook.png" alt="facebook" /></a>
+            <a href="#"><img src="./assets/images/twitter.png" alt="twitter" /></a>
+            <a href="#"><img src="./assets/images/linkedin.png" alt="linkedin" /></a>
+            <a href="#"><img src="./assets/images/github.png" alt="github" /></a>
+        </div>
+        <div>
+            <p>© All Right Reserved 2022</p>
+        </div>
+    </footer>
+    <script src="./js/script.js"></script>
 </body>
 
 </html>

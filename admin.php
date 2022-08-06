@@ -1,3 +1,15 @@
+<?php
+session_start();
+ini_set('display_errors', 'on');
+include 'connectdb.php';
+if($db) {
+    if(($_SESSION['isAdmin'] == 0)) {
+        header("location:index.php");
+    }
+} else {
+    echo "Error";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,9 +44,6 @@
                     <img src="./assets/images/card.png" alt="profil">
                 </div>
                 <?php 
-                    session_start();
-                    ini_set('display_errors', 'on');
-                    include 'connectdb.php';
                     $id = $_GET['id'];
                     $sql = "SELECT * FROM user WHERE iduser = $id";
                     $result = $db->query($sql);
@@ -54,72 +63,55 @@
                 <div>
                     <h1>Missing Persons ...</h1>
                 </div>
-                <article>
-                    <div>
-                        <h2>ID : 456988752102563 --- John Doe</h2>
-                    </div>
-                    <div>
-                        <form action="post">
-                            <button type="submit">
-                                <img src="./assets/images/isActive.png" alt="isActive">
-                            </button>
-                        </form>
-                        <form action="post">
-                            <button type="submit">
-                                <img src="./assets/images/Update.png" alt="Update">
-                            </button>
-                        </form>
-                        <form action="post">
-                            <button type="submit">
-                                <img src="./assets/images/Delete.png" alt="Delete">
-                            </button>
-                        </form>
-                    </div>
-                </article>
-                <article>
-                    <div>
-                        <h2>ID : 456988752102563 --- John Doe</h2>
-                    </div>
-                    <div>
-                        <form action="post">
-                            <button type="submit">
-                                <img src="./assets/images/isActive.png" alt="isActive">
-                            </button>
-                        </form>
-                        <form action="post">
-                            <button type="submit">
-                                <img src="./assets/images/Update.png" alt="Update">
-                            </button>
-                        </form>
-                        <form action="post">
-                            <button type="submit">
-                                <img src="./assets/images/Delete.png" alt="Delete">
-                            </button>
-                        </form>
-                    </div>
-                </article>
-                <article>
-                    <div>
-                        <h2>ID : 456988752102563 --- John Doe</h2>
-                    </div>
-                    <div>
-                        <form action="post">
-                            <button type="submit">
-                                <img src="./assets/images/isActive.png" alt="isActive">
-                            </button>
-                        </form>
-                        <form action="post">
-                            <button type="submit">
-                                <img src="./assets/images/Update.png" alt="Update">
-                            </button>
-                        </form>
-                        <form action="post">
-                            <button type="submit">
-                                <img src="./assets/images/Delete.png" alt="Delete">
-                            </button>
-                        </form>
-                    </div>
-                </article>
+                <?php 
+                    $sql = "SELECT * FROM missing ORDER BY idMissing DESC";
+                    $result = $db->query($sql);
+                    while ($row = $result->fetch()) {
+                        $_idIsActive = isset($_POST['idIsActive']) ? $_POST['idIsActive'] : null;
+                        $_idUpdate = isset($_POST['idUpdate']) ? $_POST['idUpdate'] : null;
+                        $_idDelete = isset($_POST['idDelete']) ? $_POST['idDelete'] : null;
+                        echo '<article>';
+                        echo '<div>';
+                        echo '<h2>ID : ' . $row['idmissing'] . ' --- ' . $row['lastName'] . " " . $row['firstName'] . '</h2>';
+                        echo '</div>';
+                        echo '<div>';
+                        if(isset($_POST['active'])) {
+                            $sql = "UPDATE missing SET isActive = 1 WHERE idmissing = $_idIsActive";
+                            $db->query($sql);
+                            header('Location: admin.php?id=' . $id);
+                        }
+                        echo '<form action="" method="POST">';
+                        echo '<input type="hidden" name="idIsActive" value="' . $row['idmissing'] . '">';
+                        echo '<button type="submit" name="active">';
+                        if ($row['isActive'] == 1) {
+                            echo '<img src="./assets/images/isActive.png" alt="isActive" title="isActive">';
+                        } else {
+                            echo '<img src="./assets/images/isNotActive.png" alt="isNotActive" title="isNotActive">';
+                        }
+                        echo '</button>';
+                        echo '</form>';
+                        echo '<form action="" method="POST">';
+                        echo '<input type="hidden" name="idUpdate" value="' . $row['idmissing'] . '">';
+                        echo '<button type="submit">';
+                        echo '<img src="./assets/images/Update.png" alt="Update">';
+                        echo '</button>';
+                        echo '</form>';
+                        if (isset($_POST['delete'])) {
+                            $sql = "DELETE FROM missing WHERE idmissing = $_idDelete";
+                            $result = $db->query($sql);
+                            header('Location: admin.php?id=' . $id);
+                        }
+                        echo '<form action="" method="POST">';
+                        echo '<input type="hidden" name="idDelete" value="' . $row['idmissing'] . '">';
+                        echo '<button type="submit" name="delete">';
+                    echo '<img src="./assets/images/Delete.png" alt="Delete">';
+                    echo '</button>';
+                echo '</form>';
+                echo '
+            </div>';
+            echo '</article>';
+            }
+            ?>
             </div>
         </section>
     </main>
