@@ -3,7 +3,7 @@
     ini_set('display_errors', 'on');
     include 'connectdb.php';
 
-    $id = $_GET['id'];
+    $id = isset($_GET['id']) ? $_GET['id'] : '';
     $sql = "SELECT * FROM missing WHERE idmissing = $id";
     $result = $db->prepare($sql);
     $result->execute();
@@ -31,11 +31,26 @@
             </div>
             <nav>
                 <ul>
-                    <li><a
-                            href="<?php echo $_SESSION['isAdmin'] ? 'admin.php?id=' . $_SESSION['iduser'] :  'profil.php?id=' . $_SESSION['iduser']?>">Profil</a>
+                    <li><a href="<?php
+                    if (isset($_SESSION['pseudo'])) {
+                        if ($_SESSION['isAdmin'] === 1) {
+                            echo "admin.php?id=" . $_SESSION['iduser'];
+                        } else {
+                            echo "profil.php?id=" . $_SESSION['iduser'];
+                        }
+                    } else {
+                        echo "login.php";
+                    }
+                    ?>">Profil</a>
                     </li>
                     <li><a href="missing.php">Missing</a></li>
-                    <li><a href="logout.php">Logout</a></li>
+                    <?php 
+                    if (isset($_SESSION['pseudo'])) {
+                        echo "<li><a href='logout.php'>Logout</a></li>";
+                    } else {
+                        echo "<li><a href='login.php'>Login</a></li>";
+                    }
+                    ?>
                 </ul>
             </nav>
         </div>
@@ -46,7 +61,7 @@
                 <img src="<?php echo $missing['photo'] ?>" alt="missing Person">
             </div>
             <div>
-                <p>Height :<span><?php echo $missing['height']  ?></span> Cm</p>
+                <p>Height :<span><?php echo $missing['height'] ?></span> Cm</p>
                 <p>Weight :<span><?php echo $missing['weight']  ?></span> Kg</p>
                 <p>Hair :<span><?php echo $missing['hair']  ?></span></p>
                 <p>Eyes :<span><?php echo $missing['eyes']  ?></span></p>

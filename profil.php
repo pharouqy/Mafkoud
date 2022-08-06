@@ -47,8 +47,30 @@
                     <p>Email: <span id="mail"><?php echo $row['email'] ?></span></p>
                 </div>
             </div>
+            <?php
+            if (isset($_POST['updateProfil'])) {
+                header("location:updateProfil.php?id=$id");
+            }
+
+            if (isset($_POST['deleteProfil'])) {
+                $sql = "DELETE FROM user WHERE iduser = $id";
+                $result = $db->query($sql);
+                session_start();
+                session_destroy();
+                unset($_SESSION['pseudo']);
+                unset($_SESSION['iduser']);
+                header("location:index.php");
+            }
+            ?>
             <div>
-                <div><button>Update</button><button>Delete</button></div>
+                <div>
+                    <form action="" method="post">
+                        <button type="submit" name="updateProfil">Update</button>
+                    </form>
+                    <form action="" method="post">
+                        <button type="submit" name="deleteProfil">Delete</button>
+                    </form>
+                </div>
             </div>
             <div id="label">
                 <div>

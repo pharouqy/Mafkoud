@@ -516,14 +516,14 @@ main section > div:nth-child(1) div:nth-child(2) {
   height: 500px;
   color: #550f4c;
 }
-main section > div:nth-child(2) {
+main section > div:nth-child(2) div {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-content: center;
   justify-content: flex-end;
 }
-main section > div:nth-child(2) button:first-child {
+main section > div:nth-child(2) div form:nth-child(1) button {
   margin-right: 20px;
   padding: 15px 100px 15px 100px;
   border-radius: 50px;
@@ -532,12 +532,12 @@ main section > div:nth-child(2) button:first-child {
   background-color: #67d027;
   color: #fff;
 }
-main section > div:nth-child(2) button:first-child:hover {
+main section > div:nth-child(2) div form:nth-child(1) button:hover {
   background-color: #fff;
   color: #550f4c;
   border: 1px solid #550f4c;
 }
-main section > div:nth-child(2) button:last-child {
+main section > div:nth-child(2) div form:nth-child(2) button {
   color: #fff;
   margin-left: 20px;
   padding: 15px 100px 15px 100px;
@@ -546,7 +546,7 @@ main section > div:nth-child(2) button:last-child {
   border: 1px solid transparent;
   background-color: #d02d2d;
 }
-main section > div:nth-child(2) button:last-child:hover {
+main section > div:nth-child(2) div form:nth-child(2) button:hover {
   background-color: #fff;
   color: #550f4c;
   border: 1px solid #550f4c;
@@ -798,7 +798,7 @@ main#profil aside div img {
 main#profil aside div:nth-child(2) {
   background-color: #550f4c;
   color: #fff;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   width: 305px;
   padding: 10px;
 }
