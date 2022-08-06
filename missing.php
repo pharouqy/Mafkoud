@@ -30,7 +30,7 @@
         $diabet = isset($_POST["diabet"]) ? 1 : 0;
         $mentalIlness = isset($_POST["mentalIlness"]) ? 1 : 0;
         $tatoos = isset($_POST["tatoos"]) ? 1 : 0;
-        $birthMarks = isset($_POST["birthMarks"]) ? 1 : 0;
+        $birthMarks = isset($_POST["birthmarks"]) ? 1 : 0;
         $scars = isset($_POST["scars"]) ? 1 : 0;
         $describing = $_POST["describing"];
 
@@ -47,7 +47,7 @@
         move_uploaded_file($pictureTmpName, $photo);
 
     try {
-        $sql = "INSERT INTO missing(user_iduser,firstName,lastName,birthDate,BirthPlace,ageOfMissing,Sexe,currentAdress,previousAdress,city,wilaya,cityOfMissing,wilayaOfMissing,dateOfMissing,phone,height,weight,hair,eyes,photo,blood,bloodPressure,diabet,mentalIlness,tatoos,birthmarks,scars,describing) VALUES(:user_iduser,:firstName,:lastName,:birthDate,:birthPlace,:ageOfMissing,:Sexe,:currentAdress,:previousAdress,:city,:wilaya,:cityOfMissing,:wilayaOfMissing,:dateOfMissing,:phone,:height,:weight,:hair,:eyes,:photo,:blood,:bloodPressure,:diabet,:mentalIlness,:tatoos,:birthMarks,:scars,:describing)";
+        $sql = "INSERT INTO missing(user_iduser,firstName,lastName,birthDate,BirthPlace,ageOfMissing,Sexe,currentAdress,previousAdress,city,wilaya,cityOfMissing,wilayaOfMissing,dateOfMissing,phone,height,weight,hair,eyes,photo,blood,bloodPressure,diabet,mentalIlness,tatoos,birthmarks,scars,describing) VALUES(:user_iduser,:firstName,:lastName,:birthDate,:birthPlace,:ageOfMissing,:Sexe,:currentAdress,:previousAdress,:city,:wilaya,:cityOfMissing,:wilayaOfMissing,:dateOfMissing,:phone,:height,:weight,:hair,:eyes,:photo,:blood,:bloodPressure,:diabet,:mentalIlness,:tatoos,:birthmarks,:scars,:describing)";
         $stmt = $db->prepare($sql);
         $stmt->bindParam(":user_iduser", $idUser);
         $stmt->bindParam(":firstName", $firstName);
@@ -73,7 +73,7 @@
         $stmt->bindParam(":diabet", $diabet);
         $stmt->bindParam(":mentalIlness", $mentalIlness);
         $stmt->bindParam(":tatoos", $tatoos);
-        $stmt->bindParam(":birthMarks", $birthMarksR);
+        $stmt->bindParam(":birthmarks", $birthMarksR);
         $stmt->bindParam(":scars", $scars);
         $stmt->bindParam(":photo", $photo);
         $stmt->bindParam(":describing", $describing);
@@ -250,8 +250,8 @@
                                 <span class="checkmark"></span></label>
                         </div>
                         <div>
-                            <label for="birthMarks" class="label">Birthmarks<input type="checkbox" name="birthMarks"
-                                    id="birthMarks" value="birthMarks" />
+                            <label for="birthmarks" class="label">Birthmarks<input type="checkbox" name="birthmarks"
+                                    id="birthmarks" value="birthmarks" />
                                 <span class="checkmark"></span></label>
                             <label for="scars" class="label">scars<input type="checkbox" name="scars" id="scars"
                                     value="scars" />

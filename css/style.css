@@ -773,4 +773,88 @@ div#login > div form div:last-child button:hover {
   border: #550f4c 1px solid;
 }
 
+main#profil {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+main#profil aside {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: stretch;
+  width: 350px;
+  position: sticky;
+  top: 0;
+  left: 0;
+}
+main#profil aside div img {
+  height: 325px;
+  width: 325px;
+  object-fit: cover;
+}
+main#profil aside div:nth-child(2) {
+  background-color: #550f4c;
+  color: #fff;
+  font-size: 1.5rem;
+  width: 305px;
+  padding: 10px;
+}
+main#profil section#info {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
+  width: 1090px;
+}
+main#profil section#info div:nth-child(1) {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  color: #550f4c;
+}
+main#profil section#info div:nth-child(1) > div:nth-child(1) {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 50%;
+}
+main#profil section#info div:nth-child(1) > div:nth-child(1) p {
+  font-size: 1.2rem;
+  font-weight: bolder;
+}
+main#profil section#info div:nth-child(1) > div:nth-child(1) p span {
+  font-size: 1.5rem;
+  font-weight: 100;
+}
+main#profil section#info div:nth-child(1) > div:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex: 0.8 0 0;
+  height: unset;
+  width: 50%;
+}
+main#profil section#info div:nth-child(1) > div:nth-child(2) p {
+  font-size: 1.2rem;
+  font-weight: bolder;
+}
+main#profil section#info div:nth-child(1) > div:nth-child(2) p span {
+  font-size: 1.5rem;
+  font-weight: 100;
+}
+main#profil section#info > div:nth-child(2) {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 15px;
+  border: 1px solid #550f4c;
+}
+
 /*# sourceMappingURL=style.css.map */

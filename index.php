@@ -80,7 +80,7 @@
                 $result = $stmt->fetchAll();
                 if($result) {
                     foreach ($result as $row) {
-                        echo '<a href="fiche.php/?id='.$row['idmissing'].'">';
+                        echo '<a href="fiche.php?id='.$row['idmissing'].'">';
                         echo '<article class="card">';
                         echo '<div class="card_img">';
                         echo '<img src="'.$row['photo'].'" alt="card_img" />';
@@ -122,7 +122,7 @@
           $stmt->execute();
           $result=$stmt->fetchAll();
           foreach($result as $row){
-            echo '<a href="fiche.php/?id='.$row['idmissing'].'">';
+            echo '<a href="fiche.php?id='.$row['idmissing'].'">';
             echo '<article class="card">';
             echo '<div class="card_img">';
             echo '<img src="'.$row['photo'].'" alt="card_img" />';
