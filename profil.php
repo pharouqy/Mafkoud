@@ -1,3 +1,12 @@
+<?php 
+session_start();
+ini_set('display_errors', 'on');
+include 'connectdb.php';
+$id = $_GET['id'];
+$sql = "SELECT * FROM user WHERE iduser = $id";
+$result = $db->query($sql);
+$row = $result->fetch();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,7 +68,6 @@
             if (isset($_POST['deleteProfil'])) {
                 $sql = "DELETE FROM user WHERE iduser = $id";
                 $result = $db->query($sql);
-                session_start();
                 session_destroy();
                 unset($_SESSION['pseudo']);
                 unset($_SESSION['iduser']);
