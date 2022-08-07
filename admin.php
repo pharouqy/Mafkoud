@@ -112,9 +112,12 @@ if($db) {
                         }
                         echo '</button>';
                         echo '</form>';
+                        if (isset($_POST['update'])) {
+                            header("location:updateMissing.php?id=$_idUpdate");
+                        }
                         echo '<form action="" method="POST">';
                         echo '<input type="hidden" name="idUpdate" value="' . $row['idmissing'] . '">';
-                        echo '<button type="submit">';
+                        echo '<button type="submit" name="update">';
                         echo '<img src="./assets/images/Update.png" alt="Update">';
                         echo '</button>';
                         echo '</form>';

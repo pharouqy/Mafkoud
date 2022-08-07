@@ -90,7 +90,7 @@
                     <p>Wilaya :<span><?php echo $missing['wilaya']  ?></span></p>
                     <p>wilaya Of Missing :<span><?php echo $missing['wilayaOfMissing']  ?></span></p>
                     <p>Phone :<span>0<?php echo $missing['phone']  ?></span></p>
-                    <p>Blood Pressure :<span><?php echo $missing['bloodPressure'] ? "true" : "No";  ?></span></p>
+                    <p>Blood Pressure :<span><?php echo $missing['bloodPressure'] ? "Yes" : "No";  ?></span></p>
                     <p>Tatoos :<span><?php echo $missing['tatoos'] ? "Yes" : "No";  ?></span></p>
                     <p>Scars :<span><?php echo $missing['scars'] ? "Yes" : "No";  ?></span></p>
                 </div>

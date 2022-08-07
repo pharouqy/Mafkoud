@@ -790,7 +790,7 @@ main#profil aside {
   flex-direction: column;
   align-items: flex-start;
   justify-content: stretch;
-  width: 350px;
+  width: 330px;
   position: sticky;
   top: 0;
   left: 0;
@@ -820,7 +820,7 @@ main#profil section#info {
   flex-direction: column;
   align-items: stretch;
   justify-content: stretch;
-  width: 1090px;
+  width: 980px;
 }
 main#profil section#info div:nth-child(1) {
   display: flex;
