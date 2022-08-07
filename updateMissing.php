@@ -37,20 +37,20 @@
         $birthmarks = isset($_POST['birthmarks']) ?  1 : 0;
         $scars = isset($_POST['scars']) ?  1 : 0;
 
-        $pictureName = $_FILES["photo"]["name"];
-        $pictureTmpName = $_FILES["photo"]["tmp_name"];
-        $pictureSize = $_FILES["photo"]["size"];
-        $pictureError = $_FILES["photo"]["error"];
-        $pictureType = $_FILES["photo"]["type"];
-        $pictureExt = explode(".", $pictureName);
-        $pictureActualExt = strtolower(end($pictureExt));
-        $allowed = array("jpg", "jpeg", "png");
-
-        $photo = isset($_FILES["photo"]["name"]) ? ("./images/" . rand() . $pictureName) :($row['photo']);
-
-        if($photo !== $row['photo']){
-            unlink($row['photo']);
-            move_uploaded_file($pictureTmpName, $photo);
+        if ($_FILES['photo']['name'] != "") {
+            $pictureName = $_FILES["photo"]["name"];
+            $pictureTmpName = $_FILES["photo"]["tmp_name"];
+            $pictureSize = $_FILES["photo"]["size"];
+            $pictureError = $_FILES["photo"]["error"];
+            $pictureType = $_FILES["photo"]["type"];
+            $pictureExt = explode(".", $pictureName);
+            $pictureActualExt = strtolower(end($pictureExt));
+            $allowed = array("jpg", "jpeg", "png");
+            $photo = "./images/" . rand() . $pictureName;
+                unlink($row['photo']);
+                move_uploaded_file($pictureTmpName, $photo);
+        } else {
+            $photo = $row['photo'];
         }
 
         $sql = "UPDATE missing SET firstName = '$fisrtName', lastName = '$lastName', birthDate = '$birthDate', BirthPlace = '$BirthPlace', ageOfMissing = '$ageOfMissing', Sexe = '$Sexe', currentAdress = '$currentAdress', previousAdress = '$previousAdress', city = '$city', wilaya = '$wilaya', cityOfMissing = '$cityOfMissing', wilayaOfMissing = '$wilayaOfMissing', dateOfMissing = '$dateOfMissing', phone = '$phone', height = '$height', weight = '$weight', hair = '$hair', eyes = '$eyes', blood = '$blood', bloodPressure = '$bloodPressure', diabet = '$diabet', mentalIlness = '$mentalIlness', tatoos = '$tatoos', birthmarks = '$birthmarks', scars = '$scars', photo = '$photo' WHERE idmissing = $id";
