@@ -68,7 +68,6 @@ if($db) {
             if (isset($_POST['deleteProfil'])) {
                 $sql = "DELETE FROM user WHERE iduser = $id";
                 $result = $db->query($sql);
-                session_start();
                 session_destroy();
                 unset($_SESSION['pseudo']);
                 unset($_SESSION['iduser']);

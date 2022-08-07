@@ -37,7 +37,7 @@
                 <ul>
                     <li><a href="<?php
                     if (isset($_SESSION['pseudo'])) {
-                        if ($_SESSION['isAdmin'] === 1) {
+                        if ($_SESSION['isAdmin'] == 1) {
                             echo "admin.php?id=" . $_SESSION['iduser'];
                         } else {
                             echo "profil.php?id=" . $_SESSION['iduser'];

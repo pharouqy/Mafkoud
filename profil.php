@@ -45,9 +45,6 @@ $row = $result->fetch();
                     <img src="./assets/images/card.png" alt="profil">
                 </div>
                 <?php 
-                    session_start();
-                    ini_set('display_errors', 'on');
-                    include 'connectdb.php';
                     $id = $_GET['id'];
                     $sql = "SELECT * FROM user WHERE iduser = $id";
                     $result = $db->query($sql);
