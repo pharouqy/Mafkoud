@@ -95,6 +95,7 @@ if($db) {
                         $_idIsActive = isset($_POST['idIsActive']) ? $_POST['idIsActive'] : null;
                         $_idUpdate = isset($_POST['idUpdate']) ? $_POST['idUpdate'] : null;
                         $_idDelete = isset($_POST['idDelete']) ? $_POST['idDelete'] : null;
+                        $_idPhoto = isset($_POST['idPhoto']) ? $_POST['idPhoto'] : null;
                         echo '<article>';
                         echo '<div>';
                         echo '<h2>ID : ' . $row['idmissing'] . ' -<img src="' . $row['photo'] . '"/>- ' . $row['lastName'] . " " . $row['firstName'] . '</h2>';
@@ -125,12 +126,14 @@ if($db) {
                         echo '</button>';
                         echo '</form>';
                         if (isset($_POST['delete'])) {
+                            unlink($_idPhoto);
                             $sql = "DELETE FROM missing WHERE idmissing = $_idDelete";
                             $result = $db->query($sql);
                             header('Location: admin.php?id=' . $id);
                         }
                         echo '<form action="" method="POST">';
                         echo '<input type="hidden" name="idDelete" value="' . $row['idmissing'] . '">';
+                        echo '<input type="hidden" name="idPhoto" value="' . $row['photo'] . '">';
                         echo '<button type="submit" name="delete">';
                     echo '<img src="./assets/images/Delete.png" alt="Delete">';
                     echo '</button>';
@@ -143,7 +146,7 @@ if($db) {
             </div>
         </section>
     </main>
-<?php include 'footer.php'; ?>
+    <?php include 'footer.php'; ?>
 
 </body>
 
