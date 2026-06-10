@@ -1,32 +1,56 @@
 <?php
 session_start();
-ini_set('display_errors', 'on');
-//connect to database
+ini_set('display_errors', 'off'); // Sécurité : désactiver en production
 include 'connectdb.php';
-if($db){
-  if(isset($_POST['login']))
-  {
-      $pseudo=$_POST['pseudo'] ;
-      $password=$_POST['password'];
-      $password=md5($password); //Remember we hashed password before storing last time
-      $stmt="SELECT * FROM user WHERE  pseudo='$pseudo' AND password='$password'";
-      $result=$db->prepare($stmt);
-      $result->execute();
-      $row = $result->fetch();
-      if($result->rowCount()>0)
-      {
-        $_SESSION['pseudo']=$pseudo;
-        $_SESSION['iduser']=$row['iduser'];
-        $_SESSION['isAdmin']=$row['isAdmin'];
-        header("location:index.php");
-      }
-      else
-      {
-        $_SESSION['message']="Username/password combination incorrect";
-      }
-  }
+
+// Vérification que la connexion PDO est bien établie
+if (!isset($db) || !($db instanceof PDO)) {
+    die("Erreur de connexion à la base de données.");
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
+    // Validation des entrées
+    $pseudo = trim($_POST['pseudo'] ?? '');
+    $password = $_POST['password'] ?? '';
+
+    $errors = [];
+    if ($pseudo === '') {
+        $errors[] = "Le pseudo est requis.";
+    }
+    if ($password === '') {
+        $errors[] = "Le mot de passe est requis.";
+    }
+
+    if (empty($errors)) {
+        // Requête préparée
+        $stmt = $db->prepare("SELECT * FROM user WHERE pseudo = :pseudo");
+        $stmt->execute([':pseudo' => $pseudo]);
+        $row = $stmt->fetch();
+
+        if ($row && password_verify($password, $row['password'])) {
+            session_regenerate_id(true);
+            $_SESSION['pseudo'] = $row['pseudo'];
+            $_SESSION['iduser'] = $row['iduser'];
+            $_SESSION['isAdmin'] = $row['isAdmin'];
+            header("Location: index.php");
+            exit();
+        } else {
+            $errors[] = "Pseudo ou mot de passe incorrect.";
+        }
+    }
+
+    // Stockage des erreurs en session pour affichage après redirection (facultatif)
+    if (!empty($errors)) {
+        $_SESSION['login_errors'] = $errors;
+        // Redirection vers la même page pour éviter la resoumission (PRG)
+        header("Location: login.php");
+        exit();
+    }
+}
+
+// Récupération des erreurs depuis la session (après redirection)
+$login_errors = $_SESSION['login_errors'] ?? [];
+unset($_SESSION['login_errors']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,14 +87,23 @@ if($db){
         <div id="login">
             <div>
                 <h1>Login</h1>
-                <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+
+                <?php if (!empty($login_errors)): ?>
+                    <div class="error">
+                        <?php foreach ($login_errors as $err): ?>
+                            <p><?php echo htmlspecialchars($err); ?></p>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
+
+                <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
                     <div>
                         <label for="pseudo">Pseudo :</label>
-                        <input type="text" name="pseudo" id="pseudo" />
+                        <input type="text" name="pseudo" id="pseudo" required autocomplete="username" />
                     </div>
                     <div>
                         <label for="password">Password :</label>
-                        <input type="password" name="password" id="password" />
+                        <input type="password" name="password" id="password" required autocomplete="off" />
                     </div>
                     <div>
                         <button type="submit" name="login">Login</button>
