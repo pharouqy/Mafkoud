@@ -1,24 +1,131 @@
+div#login > div form div:not(:last-child) input[type=text],
+div#login > div form div:not(:last-child) input[type=password],
+div#login > div form div:not(:last-child) input[type=email],
+div#login > div form div:not(:last-child) input[type=tel],
+div#register > div form div:not(:last-child) input[type=text],
+div#register > div form div:not(:last-child) input[type=password],
+div#register > div form div:not(:last-child) input[type=email],
+div#register > div form div:not(:last-child) input[type=tel], main .missing_form .form form div select, main .missing_form .form form div textarea, main .missing_form .form form div input[type=text],
+main .missing_form .form form div input[type=number],
+main .missing_form .form form div input[type=date],
+main .missing_form .form form div input[type=tel], main .dash div.form form select,
+main .dash div:nth-child(2) form select, main .dash div.form form input[type=text],
+main .dash div:nth-child(2) form input[type=text] {
+  display: block;
+  width: 100%;
+  height: 48px;
+  padding: 0 16px;
+  border: 1.5px solid #550f4c;
+  border-radius: 50px;
+  background-color: #fff;
+  font-family: "fauna_oneregular", sans-serif;
+  font-size: 1rem;
+  color: #333;
+  transition: all 0.2s ease;
+}
+div#login > div form div:not(:last-child) input[type=text]:focus,
+div#login > div form div:not(:last-child) input[type=password]:focus,
+div#login > div form div:not(:last-child) input[type=email]:focus,
+div#login > div form div:not(:last-child) input[type=tel]:focus,
+div#register > div form div:not(:last-child) input[type=text]:focus,
+div#register > div form div:not(:last-child) input[type=password]:focus,
+div#register > div form div:not(:last-child) input[type=email]:focus,
+div#register > div form div:not(:last-child) input[type=tel]:focus, main .missing_form .form form div select:focus, main .missing_form .form form div textarea:focus, main .missing_form .form form div input[type=text]:focus,
+main .missing_form .form form div input[type=number]:focus,
+main .missing_form .form form div input[type=date]:focus,
+main .missing_form .form form div input[type=tel]:focus, main .dash div.form form select:focus,
+main .dash div:nth-child(2) form select:focus, main .dash div.form form input[type=text]:focus,
+main .dash div:nth-child(2) form input[type=text]:focus {
+  outline: none;
+  border-color: #276dd0;
+  box-shadow: 0 0 0 3px rgba(39, 109, 208, 0.18);
+}
+div#login > div form div:not(:last-child) input[type=text]::placeholder,
+div#login > div form div:not(:last-child) input[type=password]::placeholder,
+div#login > div form div:not(:last-child) input[type=email]::placeholder,
+div#login > div form div:not(:last-child) input[type=tel]::placeholder,
+div#register > div form div:not(:last-child) input[type=text]::placeholder,
+div#register > div form div:not(:last-child) input[type=password]::placeholder,
+div#register > div form div:not(:last-child) input[type=email]::placeholder,
+div#register > div form div:not(:last-child) input[type=tel]::placeholder, main .missing_form .form form div select::placeholder, main .missing_form .form form div textarea::placeholder, main .missing_form .form form div input[type=text]::placeholder,
+main .missing_form .form form div input[type=number]::placeholder,
+main .missing_form .form form div input[type=date]::placeholder,
+main .missing_form .form form div input[type=tel]::placeholder, main .dash div.form form select::placeholder,
+main .dash div:nth-child(2) form select::placeholder, main .dash div.form form input[type=text]::placeholder,
+main .dash div:nth-child(2) form input[type=text]::placeholder {
+  color: rgb(140.25, 140.25, 140.25);
+}
+
+main section > div:nth-child(2) div form button, div#login > div form div:last-child button,
+div#register > div form div:last-child button, main .missing_form .form form div:last-child button, main .dash div.form form button,
+main .dash div:nth-child(2) form button, header .container nav ul li:nth-child(2) a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding: 0 40px;
+  border-radius: 50px;
+  font-family: "fauna_oneregular", sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+header .container nav ul li:nth-child(2) a {
+  background-color: #550f4c;
+  color: #fff;
+  border-color: #550f4c;
+}
+header .container nav ul li:nth-child(2) a:hover {
+  background-color: #fff;
+  color: #550f4c;
+}
+
+div#login > div form div:last-child button,
+div#register > div form div:last-child button, main .missing_form .form form div:last-child button, main .dash div.form form button,
+main .dash div:nth-child(2) form button {
+  background-color: #276dd0;
+  color: #fff;
+  border-color: #276dd0;
+}
+div#login > div form div:last-child button:hover,
+div#register > div form div:last-child button:hover, main .missing_form .form form div:last-child button:hover, main .dash div.form form button:hover,
+main .dash div:nth-child(2) form button:hover {
+  background-color: #fff;
+  color: #550f4c;
+  border-color: #550f4c;
+}
+
 #card article.card,
 #search article.card {
-  border: 2px solid #550f4c;
+  border: 1.5px solid rgba(85, 15, 76, 0.3);
   background-color: #fff;
-  border-radius: 30px;
-  box-shadow: 0px 0px 20px 5px #550f4c;
+  border-radius: 20px;
+  box-shadow: 0 4px 16px rgba(85, 15, 76, 0.12);
+  transition: all 0.3s ease;
 }
 #card article.card:hover,
 #search article.card:hover {
-  transform: scale(1.2);
-  transition: all 0.8s ease-in-out;
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(85, 15, 76, 0.25);
+  border-color: #550f4c;
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   font-family: "fauna_oneregular", sans-serif;
-  font-size: 18px;
-  line-height: 1.5;
+  font-size: 1rem;
+  line-height: 1.6;
   color: #333;
   background-color: #fff;
   max-width: 1440px;
@@ -30,39 +137,47 @@ body {
 }
 
 header {
-  min-height: 150px;
   width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: #fff;
+  border-bottom: 1px solid rgba(85, 15, 76, 0.1);
+  box-shadow: 0 2px 8px rgba(85, 15, 76, 0.06);
 }
 header .container {
   display: flex;
   flex-direction: row;
-  align-content: center;
-  justify-content: space-between;
-  align-items: stretch;
-  min-height: 150px;
-  padding: 0px 50px;
-  flex-wrap: wrap;
-}
-header .container .logo {
-  display: flex;
-  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  min-height: 72px;
+  padding: 0 40px;
+}
+@media (max-width: 1024px) {
+  header .container {
+    padding: 0 24px;
+  }
+}
+@media (max-width: 768px) {
+  header .container {
+    flex-direction: column;
+    padding: 16px 24px;
+    gap: 16px;
+    min-height: auto;
+  }
 }
 header .container .logo a {
   text-decoration: none;
 }
 header .container .logo a p {
-  font-size: 3.5rem;
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
   font-weight: bold;
   color: #550f4c;
-  margin-right: 10px;
+  letter-spacing: -0.5px;
+  transition: all 0.2s ease;
 }
-header .container nav {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+header .container .logo a p:hover {
+  opacity: 0.75;
 }
 header .container nav ul {
   display: flex;
@@ -70,300 +185,334 @@ header .container nav ul {
   align-items: center;
   justify-content: center;
   list-style: none;
-  margin: 0;
-  padding: 0;
+  gap: 16px;
 }
-header .container nav ul li {
-  margin: 0 15px 0 0;
+header .container nav ul li a {
+  font-size: 0.95rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
 }
 header .container nav ul li:nth-child(1) a {
   color: #550f4c;
 }
-header .container nav ul li:nth-child(2) a {
-  color: #fff;
-  text-decoration: none;
-  background-color: #550f4c;
-  padding: 20px 40px;
-  border-radius: 50px;
-  border: #550f4c 1px solid;
+header .container nav ul li:nth-child(1) a:hover {
+  opacity: 0.7;
 }
-header .container nav ul li:nth-child(2) a:hover {
-  background-color: #fff;
-  color: #550f4c;
-  border: #550f4c 1px solid;
+header .container nav ul li:nth-child(2) a {
+  padding: 0 24px;
+  font-size: 0.9rem;
+  height: 40px;
 }
 header .container nav ul li:nth-child(3) a {
   color: #550f4c;
+}
+header .container nav ul li:nth-child(3) a:hover {
+  opacity: 0.7;
 }
 
 main {
   width: 100%;
 }
 main .dash {
-  height: 600px;
   background-color: #550f4c;
-  border-radius: 0 50px 0 50px;
+  border-radius: 0 0 40px 40px;
+  padding: 64px 40px 40px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 50px;
+  gap: 40px;
 }
-main .dash div:nth-child(1) {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  width: 100%;
+@media (max-width: 1024px) {
+  main .dash {
+    padding: 40px 24px;
+    gap: 24px;
+  }
+}
+@media (max-width: 768px) {
+  main .dash {
+    padding: 24px;
+    border-radius: 0 0 24px 24px;
+    gap: 24px;
+  }
 }
 main .dash div:nth-child(1) h1 {
-  font-size: 7rem;
-  width: 100%;
+  font-size: clamp(2.2rem, 6vw, 5.5rem);
   font-weight: bold;
   color: #fff;
-  margin: 0;
+  line-height: 1.1;
+  max-width: 850px;
 }
-main .dash div:nth-child(2) form input {
-  padding: 15px;
-  height: 25px;
-  margin-right: 5px;
+main .dash div.form form,
+main .dash div:nth-child(2) form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
 }
-main .dash div:nth-child(2) form input:first-child {
-  border-radius: 50px 0px 0px 50px;
+main .dash div.form form input[type=text],
+main .dash div:nth-child(2) form input[type=text] {
+  flex: 1 1 150px;
+  max-width: 200px;
+  border-color: rgba(255, 255, 255, 0.5);
 }
+@media (max-width: 768px) {
+  main .dash div.form form input[type=text],
+  main .dash div:nth-child(2) form input[type=text] {
+    max-width: 100%;
+    flex-basis: 100%;
+  }
+}
+main .dash div.form form select,
 main .dash div:nth-child(2) form select {
-  border-radius: 0px 50px 50px 0px;
-  width: 203px;
-  border: none;
-  height: 59px;
+  flex: 1 1 170px;
+  max-width: 210px;
+  border-color: rgba(255, 255, 255, 0.5);
   -webkit-appearance: none;
   appearance: none;
-  background: url("../assets/images/select.png") 96%/15% no-repeat #fff;
-  padding: 0px 0px 0px 20px;
-}
-main .dash div:nth-child(2) form button {
-  color: #fff;
-  background-color: #276dd0;
-  padding: 22px 75px;
-  border-radius: 50px;
-  border: #550f4c 1px solid;
-  margin-top: 20px;
+  background: url("../assets/images/select.png") calc(100% - 14px) center/13px no-repeat #fff;
+  padding-right: 36px;
   cursor: pointer;
 }
-main .dash div:nth-child(2) form button:hover {
-  background-color: #fff;
-  color: #550f4c;
-  border: #550f4c 1px solid;
+@media (max-width: 768px) {
+  main .dash div.form form select,
+  main .dash div:nth-child(2) form select {
+    max-width: 100%;
+    flex-basis: 100%;
+  }
+}
+main .dash div.form form button,
+main .dash div:nth-child(2) form button {
+  flex: 0 0 auto;
+}
+@media (max-width: 768px) {
+  main .dash div.form form button,
+  main .dash div:nth-child(2) form button {
+    width: 100%;
+  }
+}
+main .main {
+  padding: 40px;
+}
+@media (max-width: 768px) {
+  main .main {
+    padding: 24px;
+  }
 }
 main .main h2 {
-  font-size: 3rem;
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
   text-align: center;
   font-weight: bold;
   color: #550f4c;
-  margin: 50px 0;
+  margin-bottom: 40px;
+}
+@media (max-width: 768px) {
+  main .main h2 {
+    margin-bottom: 24px;
+  }
 }
 main .missing_form {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 40px;
+  gap: 24px;
+}
+@media (max-width: 768px) {
+  main .missing_form {
+    padding: 24px;
+  }
 }
 main .missing_form h1 {
   color: #550f4c;
+  font-size: clamp(1.4rem, 2.5vw, 1.9rem);
 }
 main .missing_form .form {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  width: 100%;
+  max-width: 860px;
 }
 main .missing_form .form form {
-  color: #550f4c;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  gap: 16px;
+  color: #550f4c;
 }
 main .missing_form .form form div {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  width: 100%;
-  gap: 10px;
+  gap: 16px;
   flex-wrap: wrap;
+}
+main .missing_form .form form div label {
+  flex: 0 0 180px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #550f4c;
+}
+@media (max-width: 768px) {
+  main .missing_form .form form div label {
+    flex: 1 1 100%;
+  }
 }
 main .missing_form .form form div input[type=text],
 main .missing_form .form form div input[type=number],
 main .missing_form .form form div input[type=date],
-main .missing_form .form form div input[type=tel],
-main .missing_form .form form div textarea {
-  padding: 15px;
-  border-radius: 50px;
-  border: #550f4c 1px solid;
-  height: 25px;
-  width: 100%;
-  max-width: 100%;
+main .missing_form .form form div input[type=tel] {
+  flex: 1 1 200px;
 }
 main .missing_form .form form div textarea {
-  height: 300px;
-  border-radius: 20px;
-  width: 100%;
-  max-width: 100%;
+  height: 140px;
+  border-radius: 16px;
+  resize: vertical;
+  padding-top: 12px;
+  flex: 1 1 200px;
 }
 main .missing_form .form form div select {
-  border-radius: 50px;
-  height: 59px;
-  border: 1px solid #550f4c;
+  flex: 1 1 200px;
   -webkit-appearance: none;
   appearance: none;
-  background: url("../assets/images/select.png") 85%/15% no-repeat #fff;
-  padding: 0px 0px 0px 20px;
-  width: 100%;
-  max-width: 100%;
-}
-main .missing_form .form form div:nth-child(12) {
-  justify-content: flex-end;
-}
-main .missing_form .form form div:nth-child(12) button {
-  color: #fff;
-  background-color: #276dd0;
-  padding: 22px 75px;
-  border-radius: 50px;
-  border: 1px solid #276dd0;
+  background: url("../assets/images/select.png") calc(100% - 14px) center/13px no-repeat #fff;
+  padding-right: 36px;
   cursor: pointer;
 }
-main .missing_form .form form div:nth-child(12) button:hover {
-  background-color: #fff;
-  color: #550f4c;
-  border: 1px solid #550f4c;
+main .missing_form .form form div:last-child {
+  justify-content: flex-end;
 }
-
 main#profil {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  justify-content: center;
   flex-wrap: wrap;
-  padding: 20px;
-  gap: 30px;
+  padding: 40px;
+  gap: 40px;
+}
+@media (max-width: 1024px) {
+  main#profil {
+    padding: 24px;
+    gap: 24px;
+  }
+}
+@media (max-width: 768px) {
+  main#profil {
+    flex-direction: column;
+    padding: 24px;
+    gap: 24px;
+  }
 }
 main#profil aside {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  width: 330px;
+  gap: 24px;
+  width: 300px;
   flex-shrink: 0;
 }
-@media all and (max-width: 768px) {
+@media (max-width: 1024px) {
+  main#profil aside {
+    width: 260px;
+  }
+}
+@media (max-width: 768px) {
   main#profil aside {
     width: 100%;
-    margin-right: 0;
     align-items: center;
   }
 }
 main#profil aside div:first-child img {
-  height: 325px;
-  width: 325px;
+  display: block;
+  height: 300px;
+  width: 300px;
   object-fit: cover;
-  border-radius: 20px;
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+@media (max-width: 1024px) {
+  main#profil aside div:first-child img {
+    height: 260px;
+    width: 260px;
+  }
+}
+@media (max-width: 768px) {
+  main#profil aside div:first-child img {
+    width: 100%;
+    height: 260px;
+    max-width: 360px;
+  }
 }
 main#profil aside div:first-child img:hover {
-  transform: scale(1.5);
-  transition: all 0.8s ease-in-out;
-  border-radius: 30px;
+  transform: scale(1.03);
   cursor: zoom-in;
 }
 main#profil aside div:nth-child(2) {
   background-color: #550f4c;
   color: #fff;
-  font-size: 1.2rem;
-  width: 305px;
-  padding: 10px;
-  margin-top: 15px;
-  border-radius: 10px;
-}
-@media all and (max-width: 768px) {
-  main#profil aside div:nth-child(2) {
-    width: 100%;
-  }
+  font-size: 0.95rem;
+  line-height: 1.9;
+  width: 100%;
+  padding: 16px 24px;
+  border-radius: 14px;
 }
 main#profil section#info {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
   flex: 1 1 auto;
-  max-width: 980px;
+  max-width: 900px;
+  gap: 24px;
 }
-@media all and (max-width: 768px) {
+@media (max-width: 768px) {
   main#profil section#info {
     width: 100%;
     max-width: 100%;
-    margin-top: 20px;
   }
 }
 main#profil section#info > div:first-child {
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: space-between;
-  color: #550f4c;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 24px;
+  color: #550f4c;
+}
+@media (max-width: 768px) {
+  main#profil section#info > div:first-child {
+    flex-direction: column;
+  }
 }
 main#profil section#info > div:first-child > div {
   flex: 1 1 45%;
-  min-width: 280px;
+  min-width: 240px;
 }
 main#profil section#info > div:first-child > div p {
-  font-size: 1.2rem;
-  font-weight: bolder;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(85, 15, 76, 0.1);
 }
 main#profil section#info > div:first-child > div p span {
-  font-size: 1.5rem;
-  font-weight: 100;
+  font-weight: 400;
+  margin-left: 6px;
 }
 main#profil section#info > div:last-child {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 15px;
-  border: 1px solid #550f4c;
-  border-radius: 10px;
-  margin-top: 20px;
-}
-main#profil section#info > div:last-child p {
-  margin: 0;
-  font-size: 1.2rem;
+  background-color: rgba(85, 15, 76, 0.05);
+  border: 1px solid rgba(85, 15, 76, 0.12);
+  border-radius: 14px;
+  padding: 24px;
   color: #550f4c;
 }
+main#profil section#info > div:last-child p {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
 main#profil section#info > div:last-child p span {
-  font-weight: bold;
-}
-
-.error,
-.errors {
-  color: #d02d2d;
-  background: #f8b4b4;
-  border: 1px solid #d02d2d;
-  border-radius: 10px;
-  padding: 10px 20px;
-  margin: 15px 0;
-  list-style: none;
-}
-.error li,
-.errors li {
-  margin: 5px 0;
+  font-weight: 400;
+  margin-left: 6px;
 }
 
 .label {
   display: block;
   position: relative;
-  padding-left: 35px;
+  padding-left: 34px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 1rem;
   user-select: none;
 }
 .label input {
@@ -375,15 +524,17 @@ main#profil section#info > div:last-child p span {
 }
 .label .checkmark {
   position: absolute;
-  top: 0;
+  top: 2px;
   left: 0;
-  border: 1px solid #550f4c;
-  height: 25px;
-  width: 25px;
+  border: 1.5px solid #550f4c;
+  height: 22px;
+  width: 22px;
+  border-radius: 4px;
   background-color: #fff;
+  transition: all 0.2s ease;
 }
 .label:hover input ~ .checkmark {
-  background-color: #fff;
+  background-color: rgba(85, 15, 76, 0.08);
 }
 .label input:checked ~ .checkmark {
   background-color: #550f4c;
@@ -392,99 +543,207 @@ main#profil section#info > div:last-child p span {
   content: "";
   position: absolute;
   display: none;
+  left: 7px;
+  top: 3px;
+  width: 5px;
+  height: 10px;
+  border: solid #fff;
+  border-width: 0 2.5px 2.5px 0;
+  transform: rotate(45deg);
 }
 .label input:checked ~ .checkmark:after {
   display: block;
 }
-.label .checkmark:after {
-  left: 9px;
-  top: 5px;
-  width: 5px;
-  height: 10px;
-  border: solid #fff;
-  border-width: 0 3px 3px 0;
-  transform: rotate(45deg);
+
+.error,
+.errors {
+  background-color: rgba(208, 45, 45, 0.07);
+  border: 1.5px solid #d02d2d;
+  color: #d02d2d;
+  border-radius: 12px;
+  padding: 16px 24px;
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+  list-style: none;
+}
+.error li,
+.errors li {
+  margin: 4px 0;
 }
 
 footer {
-  min-height: 100px;
-  width: 97%;
+  width: 100%;
   background-color: #550f4c;
   color: #fff;
   text-align: center;
-  padding: 20px;
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin: 150px 0 0 0;
+  padding: 24px 40px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-top: 64px;
 }
-@media all and (max-width: 768px) {
+@media (max-width: 768px) {
   footer {
-    margin-top: 50px;
-    width: 100%;
+    margin-top: 40px;
+    padding: 24px;
   }
+}
+footer div:first-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+footer div:first-child a {
+  opacity: 0.75;
+  transition: all 0.2s ease;
+  display: inline-flex;
+}
+footer div:first-child a:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+footer div:first-child a img {
+  width: 26px;
+  height: 26px;
 }
 
 #card,
 #search {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
   flex-wrap: wrap;
-  gap: 20px;
+  justify-content: center;
+  gap: 24px;
+  padding: 0 40px 40px;
+}
+@media (max-width: 1024px) {
+  #card,
+  #search {
+    padding: 0 24px 24px;
+    gap: 16px;
+  }
+}
+@media (max-width: 768px) {
+  #card,
+  #search {
+    padding: 0 16px 24px;
+  }
+}
+#card > p,
+#search > p {
+  width: 100%;
+  text-align: center;
+  color: #333;
+  padding: 24px;
 }
 #card a,
 #search a {
   text-decoration: none;
+  display: block;
+  width: calc(25% - 24px);
+  min-width: 210px;
+}
+@media (max-width: 1024px) {
+  #card a,
+  #search a {
+    width: calc(33.33% - 16px);
+  }
+}
+@media (max-width: 768px) {
+  #card a,
+  #search a {
+    width: calc(50% - 16px);
+    min-width: 160px;
+  }
+}
+@media (max-width: 480px) {
+  #card a,
+  #search a {
+    width: 100%;
+  }
 }
 #card article.card,
 #search article.card {
-  max-width: 300px;
   width: 100%;
-  margin: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 #card article.card .card_img,
 #search article.card .card_img {
-  height: 200px;
+  flex-shrink: 0;
+  height: 190px;
   width: 100%;
 }
 #card article.card .card_img img,
 #search article.card .card_img img {
   height: 100%;
   width: 100%;
-  border-radius: 30px;
+  border-radius: 18px 18px 0 0;
   object-fit: cover;
 }
 #card article.card .card_text,
 #search article.card .card_text {
+  flex: 1;
   text-align: center;
-  font-size: 1.5rem;
-  font-weight: bold;
+  padding: 16px;
   color: #550f4c;
+}
+#card article.card .card_text h3,
+#search article.card .card_text h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+#card article.card .card_text h4,
+#search article.card .card_text h4 {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #666666;
+  margin-bottom: 8px;
 }
 #card article.card .card_text p,
 #search article.card .card_text p {
-  margin: 25px 15px;
+  font-size: 0.85rem;
+  margin: 8px 0;
 }
 #card article.card .card_text p span:nth-child(3) img,
 #card article.card .card_text p img#heart,
 #search article.card .card_text p span:nth-child(3) img,
 #search article.card .card_text p img#heart {
-  height: 20px;
-  width: 20px;
-  animation: scale-up-center 0.8s cubic-bezier(0.39, 0.575, 0.565, 1) infinite alternate both;
+  height: 16px;
+  width: 16px;
+  animation: heartbeat 0.9s ease-in-out infinite alternate;
+  vertical-align: middle;
 }
 #card article.card .card_text p span:nth-child(4),
 #search article.card .card_text p span:nth-child(4) {
   color: #276dd0;
+  font-weight: 600;
 }
 
-@keyframes scale-up-center {
+@keyframes heartbeat {
   0% {
-    transform: scale(0.5);
+    transform: scale(0.85);
   }
   100% {
-    transform: scale(1);
+    transform: scale(1.05);
+  }
+}
+div#login,
+div#register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100svh - 72px);
+  padding: 64px 24px;
+}
+@media (max-width: 768px) {
+  div#login,
+  div#register {
+    padding: 40px 24px;
   }
 }
 div#login > div,
@@ -493,71 +752,57 @@ div#register > div {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 24px;
+  width: 100%;
+  max-width: 440px;
 }
 div#login > div h1,
 div#register > div h1 {
   color: #550f4c;
+  font-size: clamp(1.5rem, 3vw, 2rem);
   text-align: center;
 }
 div#login > div form,
 div#register > div form {
-  border: 1px solid #550f4c;
+  width: 100%;
+  background-color: #fff;
+  border: 1.5px solid rgba(85, 15, 76, 0.2);
+  border-radius: 24px;
+  padding: 40px 24px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: 375px;
-  padding: 30px;
-  border-radius: 30px;
+  gap: 16px;
+  box-shadow: 0 6px 24px rgba(85, 15, 76, 0.08);
+}
+@media (max-width: 768px) {
+  div#login > div form,
+  div#register > div form {
+    padding: 24px;
+  }
 }
 div#login > div form div:not(:last-child),
 div#register > div form div:not(:last-child) {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 5px;
   width: 100%;
 }
 div#login > div form div:not(:last-child) label,
 div#register > div form div:not(:last-child) label {
   font-size: 0.8rem;
+  font-weight: 700;
   color: #550f4c;
-}
-div#login > div form div:not(:last-child) input[type=text],
-div#login > div form div:not(:last-child) input[type=password],
-div#login > div form div:not(:last-child) input[type=email],
-div#login > div form div:not(:last-child) input[type=tel],
-div#register > div form div:not(:last-child) input[type=text],
-div#register > div form div:not(:last-child) input[type=password],
-div#register > div form div:not(:last-child) input[type=email],
-div#register > div form div:not(:last-child) input[type=tel] {
-  padding: 15px;
-  height: 25px;
-  border-radius: 50px;
-  border: 1px solid #550f4c;
-  width: 240px;
-  margin: 0 0 5px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
 }
 div#login > div form div:last-child,
 div#register > div form div:last-child {
-  display: flex;
-  justify-content: flex-end;
   width: 100%;
+  margin-top: 8px;
 }
 div#login > div form div:last-child button,
 div#register > div form div:last-child button {
-  color: #fff;
-  background-color: #276dd0;
-  padding: 22px 75px;
-  border-radius: 50px;
-  border: 1px solid #fff;
-}
-div#login > div form div:last-child button:hover,
-div#register > div form div:last-child button:hover {
-  background-color: #fff;
-  color: #550f4c;
-  border: 1px solid #550f4c;
+  width: 100%;
 }
 
 main section > div:nth-child(1) {
@@ -566,6 +811,7 @@ main section > div:nth-child(1) {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  gap: 24px;
 }
 main section > div:nth-child(1) div:nth-child(1) {
   flex: 0.8 0 0;
@@ -581,152 +827,100 @@ main section > div:nth-child(1) div:nth-child(2) {
 }
 main section > div:nth-child(2) div {
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-end;
-  gap: 20px;
+  gap: 24px;
 }
 main section > div:nth-child(2) div form button {
-  margin: 0;
-  padding: 15px 100px;
-  border-radius: 50px;
-  font-size: 1.5rem;
-  border: 1px solid transparent;
-  cursor: pointer;
+  font-size: 1rem;
 }
 main section > div:nth-child(2) div form:nth-child(1) button {
   background-color: #67d027;
   color: #fff;
+  border-color: #67d027;
 }
 main section > div:nth-child(2) div form:nth-child(1) button:hover {
   background-color: #fff;
-  color: #550f4c;
-  border: 1px solid #550f4c;
+  color: #67d027;
+  border-color: #67d027;
 }
 main section > div:nth-child(2) div form:nth-child(2) button {
   background-color: #d02d2d;
   color: #fff;
+  border-color: #d02d2d;
 }
 main section > div:nth-child(2) div form:nth-child(2) button:hover {
   background-color: #fff;
-  color: #550f4c;
-  border: 1px solid #550f4c;
+  color: #d02d2d;
+  border-color: #d02d2d;
 }
 
 div#label {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  margin: 50px 0;
+  margin: 40px 0;
+  padding: 0 24px;
+  gap: 0;
 }
 div#label h1 {
   color: #550f4c;
+  font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+  margin-bottom: 24px;
 }
 div#label article {
-  box-sizing: border-box;
-  box-shadow: 0px 0px 20px 5px #550f4c;
   display: flex;
   flex-direction: row;
-  width: 100%;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 25px;
-  border-radius: 35px;
-  padding: 25px;
+  width: 100%;
+  margin-bottom: 24px;
+  border-radius: 18px;
+  padding: 24px;
+  border: 1px solid rgba(85, 15, 76, 0.15);
+  box-shadow: 0 4px 16px rgba(85, 15, 76, 0.1);
+  transition: all 0.3s ease;
 }
 div#label article:hover {
-  transform: translate(0, -5px);
-  transition: all 0.5s ease-in-out;
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(85, 15, 76, 0.2);
 }
 div#label article > div:nth-child(1) h2 {
+  display: flex;
+  align-items: center;
+  gap: 16px;
   color: #550f4c;
-  padding-left: 25px;
+  padding-left: 16px;
 }
 div#label article > div:nth-child(1) h2 img {
-  width: 75px;
-  height: 75px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
+  object-fit: cover;
 }
 div#label article > div:nth-child(2) {
   display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
   align-items: center;
-  padding-right: 25px;
+  gap: 16px;
 }
 div#label article > div:nth-child(2) form > button {
-  border: 1px solid transparent;
+  border: 1.5px solid transparent;
   background-color: #fff;
   cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 8px;
+  padding: 6px 10px;
+}
+div#label article > div:nth-child(2) form > button:hover {
+  opacity: 0.65;
 }
 
 div nav ul.profil {
   flex-direction: row-reverse !important;
 }
 div nav ul.profil li:nth-child(2) a {
-  margin-right: 50px;
-}
-
-@media all and (max-width: 768px) {
-  header .container {
-    height: auto;
-    justify-content: center;
-    flex-direction: column;
-  }
-  main .dash {
-    height: auto;
-  }
-  main .dash div:nth-child(1) h1 {
-    font-size: 2.5rem;
-  }
-  main .dash div.form form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  main .dash div.form form input {
-    margin-bottom: 15px;
-    border-radius: 50px !important;
-    width: 100%;
-    margin-right: 0;
-  }
-  main .dash div.form form select {
-    border-radius: 50px;
-    width: 100%;
-  }
-  .missing_form .form form div {
-    flex-direction: column;
-    align-items: center;
-  }
-  #card,
-  #search {
-    flex-direction: column;
-  }
-  #card article.card,
-  #search article.card {
-    width: 90%;
-  }
-  div#login > div form,
-  div#register > div form {
-    width: 100%;
-    padding: 20px;
-  }
-  main#profil {
-    flex-direction: column;
-    padding: 10px;
-  }
-  main#profil aside {
-    margin-bottom: 20px;
-  }
-  main#profil section#info > div:first-child {
-    flex-direction: column;
-  }
-  main#profil section#info > div:first-child > div {
-    margin-right: 0;
-  }
+  margin-right: 40px;
 }
 
 /*# sourceMappingURL=style.css.map */

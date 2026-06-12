@@ -3,25 +3,25 @@ session_start();
 ini_set('display_errors', 'off');
 include 'connectdb.php';
 
-// Régénération de session
+// RÃ©gÃ©nÃ©ration de session
 if (!isset($_SESSION['initiated'])) {
     session_regenerate_id(true);
     $_SESSION['initiated'] = true;
 }
 
-// Redirection si non connecté
+// Redirection si non connectÃ©
 if (!isset($_SESSION['iduser'])) {
     header("Location: login.php");
     exit;
 }
 
-// Récupération et validation de l'ID
+// RÃ©cupÃ©ration et validation de l'ID
 $idMissing = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 if (!$idMissing) {
     die("ID invalide.");
 }
 
-// Récupération de la fiche et vérification des droits
+// RÃ©cupÃ©ration de la fiche et vÃ©rification des droits
 $stmt = $db->prepare("SELECT * FROM missing WHERE idmissing = :id");
 $stmt->execute([':id' => $idMissing]);
 $row = $stmt->fetch();
@@ -29,27 +29,27 @@ if (!$row) {
     die("Fiche introuvable.");
 }
 if ($_SESSION['iduser'] != $row['user_iduser'] && empty($_SESSION['isAdmin'])) {
-    die("Accès interdit.");
+    die("AccÃ¨s interdit.");
 }
 
 // Initialisation des variables du formulaire
-$formData = $row; // pour pré-remplir, on conserve les données actuelles
+$formData = $row; // pour prÃ©-remplir, on conserve les donnÃ©es actuelles
 
 $errors = [];
 
-// Génération d'un token CSRF
+// GÃ©nÃ©ration d'un token CSRF
 if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 
-// Traitement du formulaire de mise à jour
+// Traitement du formulaire de mise Ã  jour
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
-    // Vérification CSRF
+    // VÃ©rification CSRF
     if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
         die("Token CSRF invalide.");
     }
 
-    // Récupération des données, avec fallback sur les valeurs existantes si champ vide
+    // RÃ©cupÃ©ration des donnÃ©es, avec fallback sur les valeurs existantes si champ vide
     $firstName = trim($_POST['firstName'] ?? '') ?: $row['firstName'];
     $lastName = trim($_POST['lastName'] ?? '') ?: $row['lastName'];
     $birthDate = trim($_POST['birthDate'] ?? '') ?: $row['birthDate'];
@@ -80,25 +80,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
     $scars = isset($_POST['scars']) ? 1 : 0;
 
     // Gestion de la photo
-    $photo = $row['photo']; // par défaut, on garde l'ancienne
+    $photo = $row['photo']; // par dÃ©faut, on garde l'ancienne
     if (!empty($_FILES['photo']['name'])) {
         $file = $_FILES['photo'];
         // Validation de l'upload
         if ($file['error'] !== UPLOAD_ERR_OK) {
-            $errors[] = "Erreur lors du téléchargement de la photo.";
+            $errors[] = "Erreur lors du tÃ©lÃ©chargement de la photo.";
         } else {
             $allowedExt = ['jpg', 'jpeg', 'png'];
             $fileExt = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
             $maxSize = 2 * 1024 * 1024; // 2 Mo
 
             if (!in_array($fileExt, $allowedExt)) {
-                $errors[] = "Format d'image non autorisé (jpg, jpeg, png).";
+                $errors[] = "Format d'image non autorisÃ© (jpg, jpeg, png).";
             } elseif ($file['size'] > $maxSize) {
-                $errors[] = "L'image ne doit pas dépasser 2 Mo.";
+                $errors[] = "L'image ne doit pas dÃ©passer 2 Mo.";
             } elseif (!@getimagesize($file['tmp_name'])) {
                 $errors[] = "Le fichier n'est pas une image valide.";
             } else {
-                // Générer un nouveau nom unique
+                // GÃ©nÃ©rer un nouveau nom unique
                 $photoDir = './images/';
                 if (!is_dir($photoDir)) {
                     mkdir($photoDir, 0755, true);
@@ -113,13 +113,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
                     }
                     $photo = $newPath;
                 } else {
-                    $errors[] = "Erreur lors du déplacement du fichier.";
+                    $errors[] = "Erreur lors du dÃ©placement du fichier.";
                 }
             }
         }
     }
 
-    // Si pas d'erreur, mise à jour en base
+    // Si pas d'erreur, mise Ã  jour en base
     if (empty($errors)) {
         try {
             $sql = "UPDATE missing SET 
@@ -187,16 +187,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
             exit;
         } catch (PDOException $e) {
             error_log("Erreur PDO : " . $e->getMessage());
-            $errors[] = "Une erreur est survenue lors de la mise à jour.";
-            // Si nouvelle photo déplacée, la supprimer
+            $errors[] = "Une erreur est survenue lors de la mise Ã  jour.";
+            // Si nouvelle photo dÃ©placÃ©e, la supprimer
             if ($photo !== $row['photo'] && file_exists($photo)) {
                 unlink($photo);
             }
         }
     }
 
-    // Mettre à jour les données du formulaire pour réafficher avec les valeurs saisies
-    // On reconstruit formData avec ce qui a été saisi pour réafficher
+    // Mettre Ã  jour les donnÃ©es du formulaire pour rÃ©afficher avec les valeurs saisies
+    // On reconstruit formData avec ce qui a Ã©tÃ© saisi pour rÃ©afficher
     $formData = array_merge($row, [
         'firstName' => $firstName,
         'lastName' => $lastName,

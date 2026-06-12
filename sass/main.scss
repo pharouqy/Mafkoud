@@ -1,41 +1,150 @@
-// === Variables & mixins ===
-$font-family-base: "fauna_oneregular";
-$primary-color: #550f4c;
-$secondary-color: #276dd0;
-$tertiary-color: #fff;
-$quaternary-color: #333;
-$green-color: #67d027;
-$red-color: #d02d2d;
+// ============================================================
+// === Variables ===
+// ============================================================
+$font-family-base:  "fauna_oneregular";
+$primary-color:     #550f4c;
+$secondary-color:   #276dd0;
+$tertiary-color:    #fff;
+$quaternary-color:  #333;
+$green-color:       #67d027;
+$red-color:         #d02d2d;
 
-@mixin layout-align($align) {
+// Breakpoints
+$bp-tablet: 1024px;
+$bp-mobile: 768px;
+$bp-small:  480px;
+
+// Espacement (scale cohérente)
+$sp-xs:  8px;
+$sp-sm:  16px;
+$sp-md:  24px;
+$sp-lg:  40px;
+$sp-xl:  64px;
+
+// Transitions
+$tr-fast: all 0.2s ease;
+$tr-base: all 0.3s ease;
+
+// ============================================================
+// === Mixins ===
+// ============================================================
+@mixin layout-align($dir) {
   display: flex;
-  flex-direction: $align;
+  flex-direction: $dir;
   align-items: center;
   justify-content: center;
 }
 
-// Placeholder pour les cartes (évite la duplication)
-%card {
-  border: 2px solid $primary-color;
-  background-color: #fff;
-  border-radius: 30px;
-  box-shadow: 0px 0px 20px 5px $primary-color;
-  &:hover {
-    transform: scale(1.2);
-    transition: all 0.8s ease-in-out;
+@mixin bp($point) {
+  @if      $point == tablet { @media (max-width: $bp-tablet) { @content; } }
+  @else if $point == mobile { @media (max-width: $bp-mobile) { @content; } }
+  @else if $point == small  { @media (max-width: $bp-small)  { @content; } }
+}
+
+// ============================================================
+// === Placeholders harmonisés ===
+// ============================================================
+
+// --- Champ de formulaire ---
+%input-base {
+  display: block;
+  width: 100%;
+  height: 48px;
+  padding: 0 $sp-sm;
+  border: 1.5px solid $primary-color;
+  border-radius: 50px;
+  background-color: $tertiary-color;
+  font-family: $font-family-base, sans-serif;
+  font-size: 1rem;
+  color: $quaternary-color;
+  transition: $tr-fast;
+
+  &:focus {
+    outline: none;
+    border-color: $secondary-color;
+    box-shadow: 0 0 0 3px rgba($secondary-color, 0.18);
+  }
+
+  &::placeholder {
+    color: lighten($quaternary-color, 35%);
   }
 }
 
-// === Reset box-sizing pour éviter les débordements ===
-* {
-  box-sizing: border-box;
+// --- Bouton de base ---
+%btn-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding: 0 $sp-lg;
+  border-radius: 50px;
+  font-family: $font-family-base, sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  white-space: nowrap;
+  transition: $tr-fast;
 }
 
+%btn-primary {
+  @extend %btn-base;
+  background-color: $primary-color;
+  color: $tertiary-color;
+  border-color: $primary-color;
+
+  &:hover {
+    background-color: $tertiary-color;
+    color: $primary-color;
+  }
+}
+
+%btn-secondary {
+  @extend %btn-base;
+  background-color: $secondary-color;
+  color: $tertiary-color;
+  border-color: $secondary-color;
+
+  &:hover {
+    background-color: $tertiary-color;
+    color: $primary-color;
+    border-color: $primary-color;
+  }
+}
+
+// --- Carte ---
+%card {
+  border: 1.5px solid rgba($primary-color, 0.3);
+  background-color: $tertiary-color;
+  border-radius: 20px;
+  box-shadow: 0 4px 16px rgba($primary-color, 0.12);
+  transition: $tr-base; // transition sur la base, pas dans :hover
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 28px rgba($primary-color, 0.25);
+    border-color: $primary-color;
+  }
+}
+
+// ============================================================
+// === Reset ===
+// ============================================================
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+// ============================================================
 // === Base ===
+// ============================================================
 body {
   font-family: $font-family-base, sans-serif;
-  font-size: 18px;
-  line-height: 1.5;
+  font-size: 1rem;
+  line-height: 1.6;
   color: $quaternary-color;
   background-color: $tertiary-color;
   max-width: 1440px;
@@ -43,205 +152,251 @@ body {
   @include layout-align(column);
 }
 
+// ============================================================
 // === Header ===
+// ============================================================
 header {
-  min-height: 150px; // au lieu de height fixe
   width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: $tertiary-color;
+  border-bottom: 1px solid rgba($primary-color, 0.1);
+  box-shadow: 0 2px 8px rgba($primary-color, 0.06);
+
   .container {
     display: flex;
     flex-direction: row;
-    align-content: center;
+    align-items: center;
     justify-content: space-between;
-    align-items: stretch;
-    min-height: 150px; // idem
-    padding: 0px 50px;
-    flex-wrap: wrap;
-    .logo {
-      @include layout-align(row);
-      a {
-        text-decoration: none;
-        p {
-          font-size: 3.5rem;
-          font-weight: bold;
-          color: $primary-color;
-          margin-right: 10px;
-        }
+    min-height: 72px;
+    padding: 0 $sp-lg;
+
+    @include bp(tablet) { padding: 0 $sp-md; }
+
+    @include bp(mobile) {
+      flex-direction: column;
+      padding: $sp-sm $sp-md;
+      gap: $sp-sm;
+      min-height: auto;
+    }
+
+    .logo a {
+      text-decoration: none;
+
+      p {
+        font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+        font-weight: bold;
+        color: $primary-color;
+        letter-spacing: -0.5px;
+        transition: $tr-fast;
+
+        &:hover { opacity: 0.75; }
       }
     }
-    nav {
+
+    nav ul {
       @include layout-align(row);
-      ul {
-        @include layout-align(row);
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        li {
-          margin: 0 15px 0 0;
-          &:nth-child(1) a {
-            color: $primary-color;
-          }
-          &:nth-child(2) a {
-            color: $tertiary-color;
-            text-decoration: none;
-            background-color: $primary-color;
-            padding: 20px 40px;
-            border-radius: 50px;
-            border: $primary-color 1px solid;
-            &:hover {
-              background-color: $tertiary-color;
-              color: $primary-color;
-              border: $primary-color 1px solid;
-            }
-          }
-          &:nth-child(3) a {
-            color: $primary-color;
-          }
-        }
+      list-style: none;
+      gap: $sp-sm;
+
+      li a {
+        font-size: 0.95rem;
+        text-decoration: none;
+        font-weight: 600;
+        transition: $tr-fast;
+      }
+
+      // 1er lien : texte simple
+      li:nth-child(1) a {
+        color: $primary-color;
+        &:hover { opacity: 0.7; }
+      }
+
+      // 2e lien : bouton filled (CTA principal)
+      li:nth-child(2) a {
+        @extend %btn-primary;
+        padding: 0 $sp-md;
+        font-size: 0.9rem;
+        height: 40px;
+      }
+
+      // 3e lien (si présent) : texte simple
+      li:nth-child(3) a {
+        color: $primary-color;
+        &:hover { opacity: 0.7; }
       }
     }
   }
 }
 
+// ============================================================
 // === Main ===
+// ============================================================
 main {
   width: 100%;
 
-  // Page d'accueil : bloc dash
+  // --- Hero / Recherche ---
   .dash {
-    height: 600px;
     background-color: $primary-color;
-    border-radius: 0 50px 0 50px;
-    @include layout-align(column);
-    padding: 50px;
-    div:nth-child(1) {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: flex-start;
-      width: 100%;
-      h1 {
-        font-size: 7rem;
-        width: 100%;
-        font-weight: bold;
-        color: #fff;
-        margin: 0;
-      }
+    border-radius: 0 0 40px 40px;
+    padding: $sp-xl $sp-lg $sp-lg;
+    display: flex;
+    flex-direction: column;
+    gap: $sp-lg;
+
+    @include bp(tablet) {
+      padding: $sp-lg $sp-md;
+      gap: $sp-md;
     }
+
+    @include bp(mobile) {
+      padding: $sp-md;
+      border-radius: 0 0 24px 24px;
+      gap: $sp-md;
+    }
+
+    // Accroche
+    div:nth-child(1) h1 {
+      font-size: clamp(2.2rem, 6vw, 5.5rem);
+      font-weight: bold;
+      color: $tertiary-color;
+      line-height: 1.1;
+      max-width: 850px;
+    }
+
+    // Formulaire de recherche
+    div.form,
     div:nth-child(2) {
       form {
-        input {
-          padding: 15px;
-          height: 25px;
-          margin-right: 5px; // éviter chevauchement avec le select
-          &:first-child {
-            border-radius: 50px 0px 0px 50px;
-          }
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: $sp-sm;
+        align-items: center;
+
+        // Inputs et select : même height 48px (harmonisé)
+        input[type="text"] {
+          @extend %input-base;
+          flex: 1 1 150px;
+          max-width: 200px;
+          border-color: rgba($tertiary-color, 0.5);
+
+          @include bp(mobile) { max-width: 100%; flex-basis: 100%; }
         }
+
         select {
-          border-radius: 0px 50px 50px 0px;
-          width: 203px;
-          border: none;
-          height: 59px;
+          @extend %input-base;
+          flex: 1 1 170px;
+          max-width: 210px;
+          border-color: rgba($tertiary-color, 0.5);
           -webkit-appearance: none;
           appearance: none;
-          background: url("../assets/images/select.png") 96% / 15% no-repeat
-            $tertiary-color;
-          padding: 0px 0px 0px 20px;
-        }
-        button {
-          color: $tertiary-color;
-          background-color: $secondary-color;
-          padding: 22px 75px;
-          border-radius: 50px;
-          border: $primary-color 1px solid;
-          margin-top: 20px;
+          background: url("../assets/images/select.png") calc(100% - 14px) center / 13px no-repeat $tertiary-color;
+          padding-right: 36px;
           cursor: pointer;
-          &:hover {
-            background-color: $tertiary-color;
-            color: $primary-color;
-            border: $primary-color 1px solid;
-          }
+
+          @include bp(mobile) { max-width: 100%; flex-basis: 100%; }
+        }
+
+        button {
+          @extend %btn-secondary;
+          flex: 0 0 auto;
+
+          @include bp(mobile) { width: 100%; }
         }
       }
     }
   }
 
-  // Titre "Last Missing"
-  .main h2 {
-    font-size: 3rem;
-    text-align: center;
-    font-weight: bold;
-    color: $primary-color;
-    margin: 50px 0;
+  // --- Section "Last Missing" ---
+  .main {
+    padding: $sp-lg;
+
+    @include bp(mobile) { padding: $sp-md; }
+
+    h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      text-align: center;
+      font-weight: bold;
+      color: $primary-color;
+      margin-bottom: $sp-lg;
+
+      @include bp(mobile) { margin-bottom: $sp-md; }
+    }
   }
 
-  // Formulaire création / mise à jour d'une personne disparue
+  // --- Formulaire création / édition disparue ---
   .missing_form {
     @include layout-align(column);
+    padding: $sp-lg;
+    gap: $sp-md;
+
+    @include bp(mobile) { padding: $sp-md; }
+
     h1 {
       color: $primary-color;
+      font-size: clamp(1.4rem, 2.5vw, 1.9rem);
     }
+
     .form {
-      @include layout-align(row);
+      width: 100%;
+      max-width: 860px;
+
       form {
+        display: flex;
+        flex-direction: column;
+        gap: $sp-sm;
         color: $primary-color;
-        @include layout-align(column);
+
         div {
           display: flex;
           flex-direction: row;
           align-items: center;
-          justify-content: space-between;
-          margin-bottom: 10px;
-          width: 100%;
-          gap: 10px; // espacement interne
-          flex-wrap: wrap; // éviter chevauchement sur écran étroit
-          // Conteneurs généraux
+          gap: $sp-sm;
+          flex-wrap: wrap;
+
+          label {
+            flex: 0 0 180px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: $primary-color;
+
+            @include bp(mobile) { flex: 1 1 100%; }
+          }
+
           input[type="text"],
           input[type="number"],
           input[type="date"],
-          input[type="tel"],
-          textarea {
-            padding: 15px;
-            border-radius: 50px;
-            border: $primary-color 1px solid;
-            height: 25px;
-            width: 100%;
-            max-width: 100%; // fluidité
+          input[type="tel"] {
+            @extend %input-base;
+            flex: 1 1 200px;
           }
+
           textarea {
-            height: 300px;
-            border-radius: 20px;
-            width: 100%;
-            max-width: 100%;
+            @extend %input-base;
+            height: 140px;
+            border-radius: 16px;
+            resize: vertical;
+            padding-top: 12px;
+            flex: 1 1 200px;
           }
+
           select {
-            border-radius: 50px;
-            height: 59px;
-            border: 1px solid $primary-color;
+            @extend %input-base;
+            flex: 1 1 200px;
             -webkit-appearance: none;
             appearance: none;
-            background: url("../assets/images/select.png") 85% / 15% no-repeat
-              $tertiary-color;
-            padding: 0px 0px 0px 20px;
-            width: 100%;
-            max-width: 100%;
+            background: url("../assets/images/select.png") calc(100% - 14px) center / 13px no-repeat $tertiary-color;
+            padding-right: 36px;
+            cursor: pointer;
           }
-          // Bouton de soumission
-          &:nth-child(12) {
+
+          // Ligne bouton submit
+          &:last-child {
             justify-content: flex-end;
-            button {
-              color: $tertiary-color;
-              background-color: $secondary-color;
-              padding: 22px 75px;
-              border-radius: 50px;
-              border: 1px solid $secondary-color;
-              cursor: pointer;
-              &:hover {
-                background-color: $tertiary-color;
-                color: $primary-color;
-                border: 1px solid $primary-color;
-              }
-            }
+
+            button { @extend %btn-secondary; }
           }
         }
       }
@@ -249,137 +404,124 @@ main {
   }
 }
 
+// ============================================================
 // === Page fiche (main#profil) ===
+// ============================================================
 main#profil {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  justify-content: center;
   flex-wrap: wrap;
-  padding: 20px;
-  gap: 30px; // au lieu de margin-right sur aside
+  padding: $sp-lg;
+  gap: $sp-lg;
+
+  @include bp(tablet) { padding: $sp-md; gap: $sp-md; }
+  @include bp(mobile) { flex-direction: column; padding: $sp-md; gap: $sp-md; }
 
   aside {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    width: 330px;
+    gap: $sp-md;
+    width: 300px;
     flex-shrink: 0;
-    @media all and (max-width: 768px) {
-      width: 100%;
-      margin-right: 0;
-      align-items: center;
-    }
 
-    div:first-child {
-      img {
-        height: 325px;
-        width: 325px;
-        object-fit: cover;
-        border-radius: 20px;
-        &:hover {
-          transform: scale(1.5);
-          transition: all 0.8s ease-in-out;
-          border-radius: 30px;
-          cursor: zoom-in;
-        }
+    @include bp(tablet) { width: 260px; }
+    @include bp(mobile) { width: 100%; align-items: center; }
+
+    div:first-child img {
+      display: block;
+      height: 300px;
+      width: 300px;
+      object-fit: cover;
+      border-radius: 16px;
+      transition: $tr-base;
+
+      @include bp(tablet) { height: 260px; width: 260px; }
+      @include bp(mobile) { width: 100%; height: 260px; max-width: 360px; }
+
+      &:hover {
+        transform: scale(1.03);
+        cursor: zoom-in;
       }
     }
 
     div:nth-child(2) {
       background-color: $primary-color;
       color: $tertiary-color;
-      font-size: 1.2rem;
-      width: 305px;
-      padding: 10px;
-      margin-top: 15px;
-      border-radius: 10px;
-      @media all and (max-width: 768px) {
-        width: 100%;
-      }
+      font-size: 0.95rem;
+      line-height: 1.9;
+      width: 100%;
+      padding: $sp-sm $sp-md;
+      border-radius: 14px;
     }
   }
 
   section#info {
     display: flex;
     flex-direction: column;
-    align-items: stretch;
     flex: 1 1 auto;
-    max-width: 980px;
-    @media all and (max-width: 768px) {
-      width: 100%;
-      max-width: 100%;
-      margin-top: 20px;
-    }
+    max-width: 900px;
+    gap: $sp-md;
+
+    @include bp(mobile) { width: 100%; max-width: 100%; }
 
     > div:first-child {
       display: flex;
-      flex-direction: row;
-      align-items: flex-start;
-      justify-content: space-between;
-      color: $primary-color;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: $sp-md;
+      color: $primary-color;
+
+      @include bp(mobile) { flex-direction: column; }
 
       > div {
         flex: 1 1 45%;
-        min-width: 280px;
+        min-width: 240px;
 
         p {
-          font-size: 1.2rem;
-          font-weight: bolder;
+          font-size: 0.95rem;
+          font-weight: 700;
+          padding: 7px 0;
+          border-bottom: 1px solid rgba($primary-color, 0.1);
+
           span {
-            font-size: 1.5rem;
-            font-weight: 100;
+            font-weight: 400;
+            margin-left: 6px;
           }
         }
       }
     }
 
     > div:last-child {
-      display: flex;
-      flex-wrap: nowrap;
-      justify-content: flex-start;
-      align-items: center;
-      padding: 15px;
-      border: 1px solid $primary-color;
-      border-radius: 10px;
-      margin-top: 20px;
+      background-color: rgba($primary-color, 0.05);
+      border: 1px solid rgba($primary-color, 0.12);
+      border-radius: 14px;
+      padding: $sp-md;
+      color: $primary-color;
+
       p {
-        margin: 0;
-        font-size: 1.2rem;
-        color: $primary-color;
+        font-size: 0.95rem;
+        font-weight: 700;
+
         span {
-          font-weight: bold;
+          font-weight: 400;
+          margin-left: 6px;
         }
       }
     }
   }
 }
 
-// === Messages d'erreur ===
-.error,
-.errors {
-  color: $red-color;
-  background: #f8b4b4; // lighten(#d02d2d, 40%) en dur
-  border: 1px solid $red-color;
-  border-radius: 10px;
-  padding: 10px 20px;
-  margin: 15px 0;
-  list-style: none;
-  li {
-    margin: 5px 0;
-  }
-}
-
+// ============================================================
 // === Checkboxes personnalisées ===
+// ============================================================
 .label {
   display: block;
   position: relative;
-  padding-left: 35px;
+  padding-left: 34px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 1rem;
   user-select: none;
+
   input {
     position: absolute;
     opacity: 0;
@@ -387,178 +529,289 @@ main#profil {
     height: 0;
     width: 0;
   }
+
   .checkmark {
     position: absolute;
-    top: 0;
+    top: 2px;
     left: 0;
-    border: 1px solid $primary-color;
-    height: 25px;
-    width: 25px;
+    border: 1.5px solid $primary-color;
+    height: 22px;
+    width: 22px;
+    border-radius: 4px;
     background-color: $tertiary-color;
+    transition: $tr-fast;
   }
+
   &:hover input ~ .checkmark {
-    background-color: $tertiary-color;
+    background-color: rgba($primary-color, 0.08);
   }
+
   input:checked ~ .checkmark {
     background-color: $primary-color;
   }
+
   .checkmark:after {
     content: "";
     position: absolute;
     display: none;
-  }
-  input:checked ~ .checkmark:after {
-    display: block;
-  }
-  .checkmark:after {
-    left: 9px;
-    top: 5px;
+    left: 7px;
+    top: 3px;
     width: 5px;
     height: 10px;
     border: solid $tertiary-color;
-    border-width: 0 3px 3px 0;
+    border-width: 0 2.5px 2.5px 0;
     transform: rotate(45deg);
+  }
+
+  input:checked ~ .checkmark:after {
+    display: block;
   }
 }
 
+// ============================================================
+// === Messages d'erreur / succès ===
+// ============================================================
+.error,
+.errors {
+  background-color: rgba($red-color, 0.07);
+  border: 1.5px solid $red-color;
+  color: $red-color;
+  border-radius: 12px;
+  padding: $sp-sm $sp-md;
+  font-size: 0.9rem;
+  margin-bottom: $sp-sm;
+  list-style: none;
+
+  li { margin: 4px 0; }
+}
+
+// ============================================================
 // === Footer ===
+// ============================================================
 footer {
-  min-height: 100px;
-  width: 97%;
+  width: 100%;
   background-color: $primary-color;
   color: $tertiary-color;
   text-align: center;
-  padding: 20px;
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin: 150px 0 0 0;
-  @media all and (max-width: 768px) {
-    margin-top: 50px;
-    width: 100%;
+  padding: $sp-md $sp-lg;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-top: $sp-xl;
+
+  @include bp(mobile) { margin-top: $sp-lg; padding: $sp-md; }
+
+  div:first-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: $sp-md;
+    margin-bottom: $sp-sm;
+
+    a {
+      opacity: 0.75;
+      transition: $tr-fast;
+      display: inline-flex;
+
+      &:hover {
+        opacity: 1;
+        transform: translateY(-2px);
+      }
+
+      img {
+        width: 26px;
+        height: 26px;
+      }
+    }
   }
 }
 
-// === Cartes (fiches disparues) ===
+// ============================================================
+// === Cartes (#card, #search) ===
+// ============================================================
 #card,
 #search {
-  @include layout-align(row);
+  display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
-  gap: 20px; // espacement régulier
+  justify-content: center;
+  gap: $sp-md;
+  padding: 0 $sp-lg $sp-lg;
+
+  @include bp(tablet) { padding: 0 $sp-md $sp-md; gap: $sp-sm; }
+  @include bp(mobile) { padding: 0 $sp-sm $sp-md; }
+
+  // Pas de résultat
+  > p {
+    width: 100%;
+    text-align: center;
+    color: $quaternary-color;
+    padding: $sp-md;
+  }
+
   a {
     text-decoration: none;
+    display: block;
+    width: calc(25% - #{$sp-md});
+    min-width: 210px;
+
+    @include bp(tablet) { width: calc(33.33% - #{$sp-sm}); }
+    @include bp(mobile) { width: calc(50% - #{$sp-sm}); min-width: 160px; }
+    @include bp(small)  { width: 100%; }
   }
+
   article.card {
     @extend %card;
-    max-width: 300px;
-    width: 100%; // responsivité
-    margin: 0; // annule les marges individuelles (gap s'en charge)
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
     .card_img {
-      height: 200px;
+      flex-shrink: 0;
+      height: 190px;
       width: 100%;
+
       img {
         height: 100%;
         width: 100%;
-        border-radius: 30px;
+        // Border-radius seulement en haut : joint visuel avec le texte en bas
+        border-radius: 18px 18px 0 0;
         object-fit: cover;
       }
     }
+
     .card_text {
+      flex: 1;
       text-align: center;
-      font-size: 1.5rem;
-      font-weight: bold;
+      padding: $sp-sm;
       color: $primary-color;
+
+      h3 {
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: 2px;
+      }
+
+      h4 {
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: lighten($quaternary-color, 20%);
+        margin-bottom: $sp-xs;
+      }
+
       p {
-        margin: 25px 15px;
+        font-size: 0.85rem;
+        margin: $sp-xs 0;
+
         span:nth-child(3) img,
         img#heart {
-          height: 20px;
-          width: 20px;
-          animation: scale-up-center 0.8s cubic-bezier(0.39, 0.575, 0.565, 1)
-            infinite alternate both;
+          height: 16px;
+          width: 16px;
+          animation: heartbeat 0.9s ease-in-out infinite alternate;
+          vertical-align: middle;
         }
+
         span:nth-child(4) {
           color: $secondary-color;
+          font-weight: 600;
         }
       }
     }
   }
 }
 
-// === Animation heart ===
-@keyframes scale-up-center {
-  0% {
-    transform: scale(0.5);
-  }
-  100% {
-    transform: scale(1);
-  }
+// ============================================================
+// === Animation cœur ===
+// ============================================================
+@keyframes heartbeat {
+  0%   { transform: scale(0.85); }
+  100% { transform: scale(1.05); }
 }
 
+// ============================================================
 // === Pages login / register ===
-div#login > div,
-div#register > div {
+// ============================================================
+div#login,
+div#register {
   @include layout-align(column);
-  h1 {
-    color: $primary-color;
-    text-align: center;
-  }
-  form {
-    border: 1px solid $primary-color;
+  min-height: calc(100svh - 72px);
+  padding: $sp-xl $sp-md;
+
+  @include bp(mobile) { padding: $sp-lg $sp-md; }
+
+  > div {
     @include layout-align(column);
+    gap: $sp-md;
     width: 100%;
-    max-width: 375px; // fluidité
-    padding: 30px;
-    border-radius: 30px;
-    div:not(:last-child) {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      label {
-        font-size: 0.8rem;
-        color: $primary-color;
-      }
-      input[type="text"],
-      input[type="password"],
-      input[type="email"],
-      input[type="tel"] {
-        padding: 15px;
-        height: 25px;
-        border-radius: 50px;
-        border: 1px solid $primary-color;
-        width: 240px;
-        margin: 0 0 5px 0;
-      }
+    max-width: 440px;
+
+    h1 {
+      color: $primary-color;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      text-align: center;
     }
-    div:last-child {
-      display: flex;
-      justify-content: flex-end;
+
+    form {
       width: 100%;
-      button {
-        color: $tertiary-color;
-        background-color: $secondary-color;
-        padding: 22px 75px;
-        border-radius: 50px;
-        border: 1px solid $tertiary-color;
-        &:hover {
-          background-color: $tertiary-color;
+      background-color: $tertiary-color;
+      border: 1.5px solid rgba($primary-color, 0.2);
+      border-radius: 24px;
+      padding: $sp-lg $sp-md;
+      display: flex;
+      flex-direction: column;
+      gap: $sp-sm;
+      box-shadow: 0 6px 24px rgba($primary-color, 0.08);
+
+      @include bp(mobile) { padding: $sp-md; }
+
+      // Chaque paire label + input
+      div:not(:last-child) {
+        display: flex;
+        flex-direction: column; // label au-dessus du champ
+        gap: 5px;
+        width: 100%;
+
+        label {
+          font-size: 0.8rem;
+          font-weight: 700;
           color: $primary-color;
-          border: 1px solid $primary-color;
+          text-transform: uppercase;
+          letter-spacing: 0.4px;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        input[type="tel"] {
+          @extend %input-base;
+        }
+      }
+
+      // Ligne bouton submit
+      div:last-child {
+        width: 100%;
+        margin-top: $sp-xs;
+
+        button {
+          @extend %btn-secondary;
+          width: 100%;
         }
       }
     }
   }
 }
 
-// === Page profil (utilisateur) ===
+// ============================================================
+// === Page profil utilisateur (main section) ===
+// ============================================================
 main section {
   > div:nth-child(1) {
     @include layout-align(row);
     flex-wrap: wrap;
-    div:nth-child(1) {
-      flex: 0.8 0 0;
-    }
+    gap: $sp-md;
+
+    div:nth-child(1) { flex: 0.8 0 0; }
+
     div:nth-child(2) {
       flex: 1 2 auto;
       display: flex;
@@ -569,155 +822,121 @@ main section {
       color: $primary-color;
     }
   }
+
   > div:nth-child(2) div {
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-end;
-    gap: 20px; // espacement entre boutons
+    gap: $sp-md;
+
     form button {
-      margin: 0; // annule les marges individuelles
-      padding: 15px 100px;
-      border-radius: 50px;
-      font-size: 1.5rem;
-      border: 1px solid transparent;
-      cursor: pointer;
+      @extend %btn-base;
+      font-size: 1rem;
     }
+
     form:nth-child(1) button {
       background-color: $green-color;
       color: $tertiary-color;
+      border-color: $green-color;
+
       &:hover {
         background-color: $tertiary-color;
-        color: $primary-color;
-        border: 1px solid $primary-color;
+        color: $green-color;
+        border-color: $green-color;
       }
     }
+
     form:nth-child(2) button {
       background-color: $red-color;
       color: $tertiary-color;
+      border-color: $red-color;
+
       &:hover {
         background-color: $tertiary-color;
-        color: $primary-color;
-        border: 1px solid $primary-color;
+        color: $red-color;
+        border-color: $red-color;
       }
     }
   }
 }
 
-// === Liste des fiches (dans profil) ===
+// ============================================================
+// === Liste des fiches (profil admin) ===
+// ============================================================
 div#label {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  margin: 50px 0;
+  margin: $sp-lg 0;
+  padding: 0 $sp-md;
+  gap: 0;
+
   h1 {
     color: $primary-color;
+    font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+    margin-bottom: $sp-md;
   }
+
   article {
-    box-sizing: border-box;
-    box-shadow: 0px 0px 20px 5px $primary-color;
     display: flex;
     flex-direction: row;
-    width: 100%; // fluidité
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 25px;
-    border-radius: 35px;
-    padding: 25px; // réduit pour éviter débordement
+    width: 100%;
+    margin-bottom: $sp-md;
+    border-radius: 18px;
+    padding: $sp-md;
+    border: 1px solid rgba($primary-color, 0.15);
+    box-shadow: 0 4px 16px rgba($primary-color, 0.1);
+    transition: $tr-base; // sur la base !
+
     &:hover {
-      transform: translate(0, -5px);
-      transition: all 0.5s ease-in-out;
+      transform: translateY(-4px);
+      box-shadow: 0 10px 28px rgba($primary-color, 0.2);
     }
+
     > div:nth-child(1) h2 {
+      display: flex;
+      align-items: center;
+      gap: $sp-sm;
       color: $primary-color;
-      padding-left: 25px;
+      padding-left: $sp-sm;
+
       img {
-        width: 75px;
-        height: 75px;
+        width: 60px;
+        height: 60px;
         border-radius: 50%;
+        object-fit: cover;
       }
     }
+
     > div:nth-child(2) {
       display: flex;
-      flex-wrap: nowrap;
-      justify-content: center;
       align-items: center;
-      padding-right: 25px;
+      gap: $sp-sm;
+
       form > button {
-        border: 1px solid transparent;
+        border: 1.5px solid transparent;
         background-color: $tertiary-color;
         cursor: pointer;
+        transition: $tr-fast;
+        border-radius: 8px;
+        padding: 6px 10px;
+
+        &:hover { opacity: 0.65; }
       }
     }
   }
 }
 
-// === Navigation secondaire (profil) ===
+// ============================================================
+// === Navigation secondaire .profil ===
+// ============================================================
 div nav ul.profil {
   flex-direction: row-reverse !important;
-  li:nth-child(2) a {
-    margin-right: 50px;
-  }
-}
 
-// === Responsive ===
-@media all and (max-width: 768px) {
-  header {
-    .container {
-      height: auto;
-      justify-content: center;
-      flex-direction: column;
-    }
-  }
-  main .dash {
-    height: auto;
-    div:nth-child(1) h1 {
-      font-size: 2.5rem;
-    }
-    div.form form {
-      @include layout-align(column);
-      input {
-        margin-bottom: 15px;
-        border-radius: 50px !important;
-        width: 100%;
-        margin-right: 0; // supprimer marge entre input/select
-      }
-      select {
-        border-radius: 50px;
-        width: 100%;
-      }
-    }
-  }
-  .missing_form .form form div {
-    flex-direction: column;
-    align-items: center;
-  }
-  #card,
-  #search {
-    flex-direction: column;
-    article.card {
-      width: 90%;
-    }
-  }
-  div#login > div form,
-  div#register > div form {
-    width: 100%;
-    padding: 20px;
-  }
-  // Fiche responsive
-  main#profil {
-    flex-direction: column;
-    padding: 10px;
-    aside {
-      margin-bottom: 20px;
-    }
-    section#info > div:first-child {
-      flex-direction: column;
-      > div {
-        margin-right: 0;
-      }
-    }
+  li:nth-child(2) a {
+    margin-right: $sp-lg;
   }
 }

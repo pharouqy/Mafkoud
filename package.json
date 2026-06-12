@@ -4,7 +4,8 @@
   "description": "Missing",
   "main": "index.js",
   "scripts": {
-    "sass": "sass --watch ./sass/main.scss:./css/style.css"
+    "sass": "sass --watch ./sass/main.scss:./css/style.css",
+    "build:sass": "sass ./sass/main.scss ./assets/css/style.css --no-source-map --style=compressed"
   },
   "author": "",
   "license": "ISC"
