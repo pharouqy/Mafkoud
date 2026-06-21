@@ -77,10 +77,10 @@ if($db) {
             <div>
                 <div>
                     <form action="" method="post">
-                        <button type="submit" name="updateProfil">Update</button>
+                        <button type="submit" name="updateProfil" class="update">Update</button>
                     </form>
                     <form action="" method="post">
-                        <button type="submit" name="deleteProfil">Delete</button>
+                        <button type="submit" name="deleteProfil" class="delete">Delete</button>
                     </form>
                 </div>
             </div>

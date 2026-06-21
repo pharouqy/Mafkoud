@@ -182,15 +182,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
             <?php if ($_SESSION['iduser'] == $id || !empty($_SESSION['isAdmin'])): ?>
-                <div>
+                <div id="button-profil">
                     <form action="updateProfil.php?id=<?php echo $id; ?>" method="post">
-                        <button type="submit" name="updateProfil">Update</button>
+                        <button type="submit" name="updateProfil" class="update">Update</button>
                     </form>
                     <?php if ($_SESSION['iduser'] == $id): ?>
                         <form action="" method="post">
                             <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                             <button type="submit" name="deleteProfil"
-                                onclick="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ?');">Delete</button>
+                                onclick="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ?');" class="delete">Delete</button>
                         </form>
                     <?php endif; ?>
                 </div>

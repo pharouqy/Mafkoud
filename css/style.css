@@ -22,6 +22,9 @@ main .dash div:nth-child(2) form input[type=text] {
   font-size: 1rem;
   color: #333;
   transition: all 0.2s ease;
+  /*&::placeholder {
+    color: lighten($quaternary-color, 35%);
+  }*/
 }
 div#login > div form div:not(:last-child) input[type=text]:focus,
 div#login > div form div:not(:last-child) input[type=password]:focus,
@@ -40,23 +43,9 @@ main .dash div:nth-child(2) form input[type=text]:focus {
   border-color: #276dd0;
   box-shadow: 0 0 0 3px rgba(39, 109, 208, 0.18);
 }
-div#login > div form div:not(:last-child) input[type=text]::placeholder,
-div#login > div form div:not(:last-child) input[type=password]::placeholder,
-div#login > div form div:not(:last-child) input[type=email]::placeholder,
-div#login > div form div:not(:last-child) input[type=tel]::placeholder,
-div#register > div form div:not(:last-child) input[type=text]::placeholder,
-div#register > div form div:not(:last-child) input[type=password]::placeholder,
-div#register > div form div:not(:last-child) input[type=email]::placeholder,
-div#register > div form div:not(:last-child) input[type=tel]::placeholder, main .missing_form .form form div select::placeholder, main .missing_form .form form div textarea::placeholder, main .missing_form .form form div input[type=text]::placeholder,
-main .missing_form .form form div input[type=number]::placeholder,
-main .missing_form .form form div input[type=date]::placeholder,
-main .missing_form .form form div input[type=tel]::placeholder, main .dash div.form form select::placeholder,
-main .dash div:nth-child(2) form select::placeholder, main .dash div.form form input[type=text]::placeholder,
-main .dash div:nth-child(2) form input[type=text]::placeholder {
-  color: rgb(140.25, 140.25, 140.25);
-}
 
-main section > div:nth-child(2) div form button, div#login > div form div:last-child button,
+#button-profil .update,
+#button-profil .delete, main section > div:nth-child(2) div form > button, div#login > div form div:last-child button,
 div#register > div form div:last-child button, main .missing_form .form form div:last-child button, main .dash div.form form button,
 main .dash div:nth-child(2) form button, header .container nav ul li:nth-child(2) a {
   display: inline-flex;
@@ -700,7 +689,7 @@ footer div:first-child a img {
 #search article.card .card_text h4 {
   font-size: 0.85rem;
   font-weight: 500;
-  color: #666666;
+  /*color: lighten($quaternary-color, 20%);*/
   margin-bottom: 8px;
 }
 #card article.card .card_text p,
@@ -831,7 +820,7 @@ main section > div:nth-child(2) div {
   justify-content: flex-end;
   gap: 24px;
 }
-main section > div:nth-child(2) div form button {
+main section > div:nth-child(2) div form > button {
   font-size: 1rem;
 }
 main section > div:nth-child(2) div form:nth-child(1) button {
@@ -850,6 +839,59 @@ main section > div:nth-child(2) div form:nth-child(2) button {
   border-color: #d02d2d;
 }
 main section > div:nth-child(2) div form:nth-child(2) button:hover {
+  background-color: #fff;
+  color: #d02d2d;
+  border-color: #d02d2d;
+}
+
+#button-profil {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 24px;
+}
+#button-profil .update,
+#button-profil .delete {
+  font-size: 1rem;
+}
+#button-profil .update {
+  background-color: #67d027;
+  color: #fff;
+  border-color: #67d027;
+}
+#button-profil .update:hover {
+  background-color: #fff;
+  color: #67d027;
+  border-color: #67d027;
+}
+#button-profil .delete {
+  background-color: #d02d2d;
+  color: #fff;
+  border-color: #d02d2d;
+}
+#button-profil .delete:hover {
+  background-color: #fff;
+  color: #d02d2d;
+  border-color: #d02d2d;
+}
+
+.update {
+  background-color: #67d027;
+  color: #fff;
+  border-color: #67d027;
+}
+.update:hover {
+  background-color: #fff;
+  color: #67d027;
+  border-color: #67d027;
+}
+
+.delete {
+  background-color: #d02d2d;
+  color: #fff;
+  border-color: #d02d2d;
+}
+.delete:hover {
   background-color: #fff;
   color: #d02d2d;
   border-color: #d02d2d;

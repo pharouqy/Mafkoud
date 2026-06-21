@@ -1,25 +1,25 @@
 // ============================================================
 // === Variables ===
 // ============================================================
-$font-family-base:  "fauna_oneregular";
-$primary-color:     #550f4c;
-$secondary-color:   #276dd0;
-$tertiary-color:    #fff;
-$quaternary-color:  #333;
-$green-color:       #67d027;
-$red-color:         #d02d2d;
+$font-family-base: "fauna_oneregular";
+$primary-color: #550f4c;
+$secondary-color: #276dd0;
+$tertiary-color: #fff;
+$quaternary-color: #333;
+$green-color: #67d027;
+$red-color: #d02d2d;
 
 // Breakpoints
 $bp-tablet: 1024px;
 $bp-mobile: 768px;
-$bp-small:  480px;
+$bp-small: 480px;
 
 // Espacement (scale cohérente)
-$sp-xs:  8px;
-$sp-sm:  16px;
-$sp-md:  24px;
-$sp-lg:  40px;
-$sp-xl:  64px;
+$sp-xs: 8px;
+$sp-sm: 16px;
+$sp-md: 24px;
+$sp-lg: 40px;
+$sp-xl: 64px;
 
 // Transitions
 $tr-fast: all 0.2s ease;
@@ -36,9 +36,19 @@ $tr-base: all 0.3s ease;
 }
 
 @mixin bp($point) {
-  @if      $point == tablet { @media (max-width: $bp-tablet) { @content; } }
-  @else if $point == mobile { @media (max-width: $bp-mobile) { @content; } }
-  @else if $point == small  { @media (max-width: $bp-small)  { @content; } }
+  @if $point == tablet {
+    @media (max-width: $bp-tablet) {
+      @content;
+    }
+  } @else if $point == mobile {
+    @media (max-width: $bp-mobile) {
+      @content;
+    }
+  } @else if $point == small {
+    @media (max-width: $bp-small) {
+      @content;
+    }
+  }
 }
 
 // ============================================================
@@ -65,9 +75,9 @@ $tr-base: all 0.3s ease;
     box-shadow: 0 0 0 3px rgba($secondary-color, 0.18);
   }
 
-  &::placeholder {
+  /*&::placeholder {
     color: lighten($quaternary-color, 35%);
-  }
+  }*/
 }
 
 // --- Bouton de base ---
@@ -172,7 +182,9 @@ header {
     min-height: 72px;
     padding: 0 $sp-lg;
 
-    @include bp(tablet) { padding: 0 $sp-md; }
+    @include bp(tablet) {
+      padding: 0 $sp-md;
+    }
 
     @include bp(mobile) {
       flex-direction: column;
@@ -191,7 +203,9 @@ header {
         letter-spacing: -0.5px;
         transition: $tr-fast;
 
-        &:hover { opacity: 0.75; }
+        &:hover {
+          opacity: 0.75;
+        }
       }
     }
 
@@ -210,7 +224,9 @@ header {
       // 1er lien : texte simple
       li:nth-child(1) a {
         color: $primary-color;
-        &:hover { opacity: 0.7; }
+        &:hover {
+          opacity: 0.7;
+        }
       }
 
       // 2e lien : bouton filled (CTA principal)
@@ -224,7 +240,9 @@ header {
       // 3e lien (si présent) : texte simple
       li:nth-child(3) a {
         color: $primary-color;
-        &:hover { opacity: 0.7; }
+        &:hover {
+          opacity: 0.7;
+        }
       }
     }
   }
@@ -282,7 +300,10 @@ main {
           max-width: 200px;
           border-color: rgba($tertiary-color, 0.5);
 
-          @include bp(mobile) { max-width: 100%; flex-basis: 100%; }
+          @include bp(mobile) {
+            max-width: 100%;
+            flex-basis: 100%;
+          }
         }
 
         select {
@@ -292,18 +313,24 @@ main {
           border-color: rgba($tertiary-color, 0.5);
           -webkit-appearance: none;
           appearance: none;
-          background: url("../assets/images/select.png") calc(100% - 14px) center / 13px no-repeat $tertiary-color;
+          background: url("../assets/images/select.png") calc(100% - 14px)
+            center / 13px no-repeat $tertiary-color;
           padding-right: 36px;
           cursor: pointer;
 
-          @include bp(mobile) { max-width: 100%; flex-basis: 100%; }
+          @include bp(mobile) {
+            max-width: 100%;
+            flex-basis: 100%;
+          }
         }
 
         button {
           @extend %btn-secondary;
           flex: 0 0 auto;
 
-          @include bp(mobile) { width: 100%; }
+          @include bp(mobile) {
+            width: 100%;
+          }
         }
       }
     }
@@ -313,7 +340,9 @@ main {
   .main {
     padding: $sp-lg;
 
-    @include bp(mobile) { padding: $sp-md; }
+    @include bp(mobile) {
+      padding: $sp-md;
+    }
 
     h2 {
       font-size: clamp(1.6rem, 3.5vw, 2.4rem);
@@ -322,7 +351,9 @@ main {
       color: $primary-color;
       margin-bottom: $sp-lg;
 
-      @include bp(mobile) { margin-bottom: $sp-md; }
+      @include bp(mobile) {
+        margin-bottom: $sp-md;
+      }
     }
   }
 
@@ -332,7 +363,9 @@ main {
     padding: $sp-lg;
     gap: $sp-md;
 
-    @include bp(mobile) { padding: $sp-md; }
+    @include bp(mobile) {
+      padding: $sp-md;
+    }
 
     h1 {
       color: $primary-color;
@@ -362,7 +395,9 @@ main {
             font-size: 0.9rem;
             color: $primary-color;
 
-            @include bp(mobile) { flex: 1 1 100%; }
+            @include bp(mobile) {
+              flex: 1 1 100%;
+            }
           }
 
           input[type="text"],
@@ -387,7 +422,8 @@ main {
             flex: 1 1 200px;
             -webkit-appearance: none;
             appearance: none;
-            background: url("../assets/images/select.png") calc(100% - 14px) center / 13px no-repeat $tertiary-color;
+            background: url("../assets/images/select.png") calc(100% - 14px)
+              center / 13px no-repeat $tertiary-color;
             padding-right: 36px;
             cursor: pointer;
           }
@@ -396,7 +432,9 @@ main {
           &:last-child {
             justify-content: flex-end;
 
-            button { @extend %btn-secondary; }
+            button {
+              @extend %btn-secondary;
+            }
           }
         }
       }
@@ -415,8 +453,15 @@ main#profil {
   padding: $sp-lg;
   gap: $sp-lg;
 
-  @include bp(tablet) { padding: $sp-md; gap: $sp-md; }
-  @include bp(mobile) { flex-direction: column; padding: $sp-md; gap: $sp-md; }
+  @include bp(tablet) {
+    padding: $sp-md;
+    gap: $sp-md;
+  }
+  @include bp(mobile) {
+    flex-direction: column;
+    padding: $sp-md;
+    gap: $sp-md;
+  }
 
   aside {
     display: flex;
@@ -425,8 +470,13 @@ main#profil {
     width: 300px;
     flex-shrink: 0;
 
-    @include bp(tablet) { width: 260px; }
-    @include bp(mobile) { width: 100%; align-items: center; }
+    @include bp(tablet) {
+      width: 260px;
+    }
+    @include bp(mobile) {
+      width: 100%;
+      align-items: center;
+    }
 
     div:first-child img {
       display: block;
@@ -436,8 +486,15 @@ main#profil {
       border-radius: 16px;
       transition: $tr-base;
 
-      @include bp(tablet) { height: 260px; width: 260px; }
-      @include bp(mobile) { width: 100%; height: 260px; max-width: 360px; }
+      @include bp(tablet) {
+        height: 260px;
+        width: 260px;
+      }
+      @include bp(mobile) {
+        width: 100%;
+        height: 260px;
+        max-width: 360px;
+      }
 
       &:hover {
         transform: scale(1.03);
@@ -463,7 +520,10 @@ main#profil {
     max-width: 900px;
     gap: $sp-md;
 
-    @include bp(mobile) { width: 100%; max-width: 100%; }
+    @include bp(mobile) {
+      width: 100%;
+      max-width: 100%;
+    }
 
     > div:first-child {
       display: flex;
@@ -471,7 +531,9 @@ main#profil {
       gap: $sp-md;
       color: $primary-color;
 
-      @include bp(mobile) { flex-direction: column; }
+      @include bp(mobile) {
+        flex-direction: column;
+      }
 
       > div {
         flex: 1 1 45%;
@@ -582,7 +644,9 @@ main#profil {
   margin-bottom: $sp-sm;
   list-style: none;
 
-  li { margin: 4px 0; }
+  li {
+    margin: 4px 0;
+  }
 }
 
 // ============================================================
@@ -598,7 +662,10 @@ footer {
   font-weight: 600;
   margin-top: $sp-xl;
 
-  @include bp(mobile) { margin-top: $sp-lg; padding: $sp-md; }
+  @include bp(mobile) {
+    margin-top: $sp-lg;
+    padding: $sp-md;
+  }
 
   div:first-child {
     display: flex;
@@ -637,8 +704,13 @@ footer {
   gap: $sp-md;
   padding: 0 $sp-lg $sp-lg;
 
-  @include bp(tablet) { padding: 0 $sp-md $sp-md; gap: $sp-sm; }
-  @include bp(mobile) { padding: 0 $sp-sm $sp-md; }
+  @include bp(tablet) {
+    padding: 0 $sp-md $sp-md;
+    gap: $sp-sm;
+  }
+  @include bp(mobile) {
+    padding: 0 $sp-sm $sp-md;
+  }
 
   // Pas de résultat
   > p {
@@ -654,9 +726,16 @@ footer {
     width: calc(25% - #{$sp-md});
     min-width: 210px;
 
-    @include bp(tablet) { width: calc(33.33% - #{$sp-sm}); }
-    @include bp(mobile) { width: calc(50% - #{$sp-sm}); min-width: 160px; }
-    @include bp(small)  { width: 100%; }
+    @include bp(tablet) {
+      width: calc(33.33% - #{$sp-sm});
+    }
+    @include bp(mobile) {
+      width: calc(50% - #{$sp-sm});
+      min-width: 160px;
+    }
+    @include bp(small) {
+      width: 100%;
+    }
   }
 
   article.card {
@@ -695,7 +774,7 @@ footer {
       h4 {
         font-size: 0.85rem;
         font-weight: 500;
-        color: lighten($quaternary-color, 20%);
+        /*color: lighten($quaternary-color, 20%);*/
         margin-bottom: $sp-xs;
       }
 
@@ -724,8 +803,12 @@ footer {
 // === Animation cœur ===
 // ============================================================
 @keyframes heartbeat {
-  0%   { transform: scale(0.85); }
-  100% { transform: scale(1.05); }
+  0% {
+    transform: scale(0.85);
+  }
+  100% {
+    transform: scale(1.05);
+  }
 }
 
 // ============================================================
@@ -737,7 +820,9 @@ div#register {
   min-height: calc(100svh - 72px);
   padding: $sp-xl $sp-md;
 
-  @include bp(mobile) { padding: $sp-lg $sp-md; }
+  @include bp(mobile) {
+    padding: $sp-lg $sp-md;
+  }
 
   > div {
     @include layout-align(column);
@@ -762,7 +847,9 @@ div#register {
       gap: $sp-sm;
       box-shadow: 0 6px 24px rgba($primary-color, 0.08);
 
-      @include bp(mobile) { padding: $sp-md; }
+      @include bp(mobile) {
+        padding: $sp-md;
+      }
 
       // Chaque paire label + input
       div:not(:last-child) {
@@ -810,7 +897,9 @@ main section {
     flex-wrap: wrap;
     gap: $sp-md;
 
-    div:nth-child(1) { flex: 0.8 0 0; }
+    div:nth-child(1) {
+      flex: 0.8 0 0;
+    }
 
     div:nth-child(2) {
       flex: 1 2 auto;
@@ -829,7 +918,7 @@ main section {
     justify-content: flex-end;
     gap: $sp-md;
 
-    form button {
+    form > button {
       @extend %btn-base;
       font-size: 1rem;
     }
@@ -857,6 +946,67 @@ main section {
         border-color: $red-color;
       }
     }
+  }
+}
+
+  #button-profil {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: $sp-md;
+
+    .update,
+    .delete {
+      @extend %btn-base;
+      font-size: 1rem;
+    }
+
+    .update {
+      background-color: $green-color;
+      color: $tertiary-color;
+      border-color: $green-color;
+
+      &:hover {
+        background-color: $tertiary-color;
+        color: $green-color;
+        border-color: $green-color;
+      }
+    }
+
+    .delete {
+      background-color: $red-color;
+      color: $tertiary-color;
+      border-color: $red-color;
+
+      &:hover {
+        background-color: $tertiary-color;
+        color: $red-color;
+        border-color: $red-color;
+      }
+    }
+  }
+
+.update {
+  background-color: $green-color;
+  color: $tertiary-color;
+  border-color: $green-color;
+
+  &:hover {
+    background-color: $tertiary-color;
+    color: $green-color;
+    border-color: $green-color;
+  }
+}
+
+.delete {
+  background-color: $red-color;
+  color: $tertiary-color;
+  border-color: $red-color;
+
+  &:hover {
+    background-color: $tertiary-color;
+    color: $red-color;
+    border-color: $red-color;
   }
 }
 
@@ -924,7 +1074,9 @@ div#label {
         border-radius: 8px;
         padding: 6px 10px;
 
-        &:hover { opacity: 0.65; }
+        &:hover {
+          opacity: 0.65;
+        }
       }
     }
   }
